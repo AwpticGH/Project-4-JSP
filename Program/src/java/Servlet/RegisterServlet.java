@@ -5,7 +5,6 @@
 package Servlet;
 
 import Controller.AccountController;
-import Helper.AccountHelper;
 import Model.AccountModel;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -69,15 +68,15 @@ public class RegisterServlet extends HttpServlet {
             String name = request.getParameter("name");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-            String passwordConfirmed = request.getParameter("passswordConfirmed");
+            String passwordConfirmed = request.getParameter("passwordConfirmed");
             String gender = request.getParameter("gender");
             String title = request.getParameter("title");
             String dob = request.getParameter("dob");
             String phoneNumber = request.getParameter("phoneNumber");
-            
-            dob = AccountHelper.parseDateToSqlDate(dob);
 
             if (password.equals(passwordConfirmed)) {
+                System.out.println("Password is equal");
+
                 AccountModel model = new AccountModel();
                 model.setName(name);
                 model.setEmail(email);
@@ -86,17 +85,22 @@ public class RegisterServlet extends HttpServlet {
                 model.setTitle(title);
                 model.setDob(dob);
                 model.setPhoneNumber(phoneNumber);
-                
+
+                System.out.println("Model is set");
+
                 AccountController ac = new AccountController();
                 boolean registered = ac.register(model);
 
+                System.out.println("Attempting to register");
+
                 if (registered) {
                     response.sendRedirect("Home");
+                    System.out.println("Register Successful");
                 }
             }
         }
         catch(Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e);
         }
     }
 

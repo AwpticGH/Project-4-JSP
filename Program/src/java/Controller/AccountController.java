@@ -6,10 +6,13 @@ package Controller;
 
 import Model.AccountModel;
 import Query.AccountQuery;
+import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -19,14 +22,26 @@ public class AccountController extends BaseController {
     
     AccountQuery query = new AccountQuery();
     
-    public ResultSet getAccount(String email, String password) {
-        String sql = this.query.getAccount;
+    public ResultSet login(AccountModel model) {
+        String sql = this.query.login;
         
         Map<Integer, Object> map = new HashMap<>();
-        map.put(1, email);
-        map.put(2, password);
+        map.put(1, model.getEmail());
+        map.put(2, model.getPassword());
         
         return super.get(map, sql);
+    }
+    
+    public void setAccount(HttpSession session, AccountModel model) {
+        session.setAttribute("status", "login");
+        session.setAttribute("username", model.getUsername());
+        session.setAttribute("email", model.getEmail());
+        session.setAttribute("password", model.getPassword());
+        session.setAttribute("name", model.getName());
+        session.setAttribute("gender", model.getGender());
+        session.setAttribute("title", model.getTitle());
+        session.setAttribute("dob", model.getDob());
+        session.setAttribute("phoneNumber", model.getPhoneNumber());
     }
     
     public boolean register(AccountModel model) throws ParseException {

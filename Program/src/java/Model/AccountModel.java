@@ -11,6 +11,7 @@ package Model;
 public class AccountModel {
     
     private String id;
+    private String username;
     private String email;
     private String password;
     private String name;
@@ -25,6 +26,14 @@ public class AccountModel {
     
     public String getId() {
         return id;
+    }
+    
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+    public String getUsername() {
+        return username;
     }
     
     public void setEmail(String email) {

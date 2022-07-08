@@ -24,4 +24,13 @@
     #login-panel.focussed {
         display: block;
     }
+    
+    #user-panel {
+        display: none;
+    }
+    
+    #user-panel.focussed {
+        display: block;
+    }
+    
 </style>

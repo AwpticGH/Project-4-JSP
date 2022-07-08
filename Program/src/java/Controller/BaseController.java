@@ -20,7 +20,7 @@ import java.util.Map;
 public class BaseController {
     DBConnection conn = new DBConnection();
     
-    public ResultSet get(String sql) {
+    public CachedRowSetImpl get(String sql) {
         try {
             Connection con = conn.open();
             
@@ -32,7 +32,7 @@ public class BaseController {
             
             con.close();
             
-            return rs;
+            return crs;
         }
         catch(Exception e) {
             System.out.println(e);
@@ -40,7 +40,7 @@ public class BaseController {
         }
     }
     
-    public ResultSet get(Map<Integer, Object> map, String sql) {
+    public CachedRowSetImpl get(Map<Integer, Object> map, String sql) {
         try {
             Connection con = conn.open();
             
@@ -57,7 +57,7 @@ public class BaseController {
             
             con.close();
             
-            return rs;
+            return crs;
         }
         catch(Exception e) {
             System.out.println(e);

@@ -19,14 +19,69 @@ bgSidebar.addEventListener('click', function() {
     burger.classList.remove('change');
 });
 
-const navLogin = document.getElementById("nav-login");
+// not logged-in
+const navLogin = document.getElementById("trigger-login");
 const loginPanel = document.getElementById("login-panel");
+// logged-in
+const navUser = document.getElementById("trigger-user");
+const userPanel = document.getElementById("user-panel");
 
-function extendLogin() {
-    if (loginPanel.style.display === "block") {
-        loginPanel.style.display = "none";
-    }
-    else {
-        loginPanel.style.display = "block";
-    }
+let focusedElement = null;
+
+const focusElement = (element) => {
+    if (focusedElement) focusedElement.classList.remove('focussed');
+    focusedElement = element;
+    focusedElement.classList.add('focussed');
+}
+
+const unfocusElement = () => {
+    if (!focusedElement) return;
+    focusedElement.classList.remove('focussed');
+    focusedElement = null;
+    hideContainers();
+}
+
+document.addEventListener("click", (evt) => {
+    if (!focusedElement) return;
+    let targetEl = evt.target; // clicked element
+    do {
+        if(targetEl === focusedElement) {
+            return;
+        }
+        // Go up the DOM
+        targetEl = targetEl.parentNode;
+    } while (targetEl);
+    // This is a click outside.
+    unfocusElement();
+});
+
+document.querySelectorAll('.focusable').forEach(value => {
+    value.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        focusElement(value);
+    })
+});
+
+document.getElementById('trigger-login').addEventListener('click', (ev) => {
+    ev.stopPropagation();
+    focusElement(loginPanel);
+})
+
+document.getElementById('trigger-user').addEventListener('click', (ev) => {
+    ev.stopPropagation();
+    focusElement(userPanel);
+})
+
+const status = document.getElementById("status").value;
+if (status === "login") {
+    navLogin.style.display = "none";
+    navUser.style.display = "block";
+}
+else {
+    navLogin.style.display = "block";
+    navUser.style.display = "none";
+}
+
+function logout() {
+    status = "logout";
 }

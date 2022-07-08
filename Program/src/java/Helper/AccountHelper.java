@@ -13,7 +13,7 @@ public class AccountHelper {
     public static String parseDateToSqlDate(String date) {
         String[] splitted = date.split("/");
         
-        System.out.println(splitted[0] + splitted[1] + splitted[2]);
+//        System.out.println(splitted[0] + splitted[1] + splitted[2]);
         
 //        System.out.println(splitted[0]);
 //        System.out.println(splitted[1]);

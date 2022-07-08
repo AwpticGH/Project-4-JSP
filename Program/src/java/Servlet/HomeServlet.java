@@ -4,6 +4,7 @@
  */
 package Servlet;
 
+import Config.DBConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -31,6 +32,8 @@ public class HomeServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
+            DBConnection con = new DBConnection();
+            System.out.println(con.open());
             RequestDispatcher dispatch = request.getRequestDispatcher("/views/home.jsp");
             dispatch.forward(request, response);
         }

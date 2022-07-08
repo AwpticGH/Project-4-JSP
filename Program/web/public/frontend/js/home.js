@@ -8,46 +8,7 @@ const searchBox = document.getElementById("search-box");
 const allElement = document.getElementsByTagName("*");
 
 /** @type HTMLElement|null */
-let focusedElement = null;
 
-const focusElement = (element) => {
-    if (focusedElement) focusedElement.classList.remove('focussed');
-    focusedElement = element;
-    focusedElement.classList.add('focussed');
-}
-
-const unfocusElement = () => {
-    if (!focusedElement) return;
-    focusedElement.classList.remove('focussed');
-    focusedElement = null;
-    hideContainers();
-}
-
-document.addEventListener("click", (evt) => {
-    if (!focusedElement) return;
-    let targetEl = evt.target; // clicked element
-    do {
-        if(targetEl === focusedElement) {
-            return;
-        }
-        // Go up the DOM
-        targetEl = targetEl.parentNode;
-    } while (targetEl);
-    // This is a click outside.
-    unfocusElement();
-});
-
-document.querySelectorAll('.focusable').forEach(value => {
-    value.addEventListener("click", (ev) => {
-        ev.stopPropagation();
-        focusElement(value);
-    })
-})
-
-document.getElementById('trigger-login').addEventListener('click', (ev) => {
-    ev.stopPropagation();
-    focusElement(loginPanel);
-})
 
 
 
@@ -180,7 +141,6 @@ function displayListsFrom() {
         if (passContainer.style.display == "block") {
             passContainer.style.display = "none";
         }
-        console.log("blah")
     }
 }
 function displayListsTo() {

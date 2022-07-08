@@ -9,7 +9,7 @@ package Query;
  * @author rafih
  */
 public class AccountQuery {
-    public String getAccount = "SELECT * FROM user WHERE email = ? AND password = ?";
-    public String register = "INSERT INTO 'user' (Email, Password, Name, Gender, Title, DateOfBirth, PhoneNumber) VALUES"
+    public String login = "SELECT * FROM users WHERE Email = ? AND Password = ?";
+    public String register = "INSERT INTO users (Email, Password, Name, Gender, Title, DateOfBirth, PhoneNumber) VALUES"
             + "(?, ?, ?, ?, ?, ?, ?)";
 }

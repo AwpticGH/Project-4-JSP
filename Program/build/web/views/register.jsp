@@ -25,7 +25,7 @@
             <div class="container">
                 <div class="title">Registration</div>
                 <div class="content">
-                    <form action="Register" method="POST">
+                    <form method="POST" action="Register">
                         <div class="user-details">
                             <div class="input-box">
                                 <span class="details">Full Name</span>
@@ -33,7 +33,7 @@
                             </div>
                             <div class="input-box">
                                 <span class="details">Email</span>
-                                <input type="text" placeholder="Enter your Email" name="email" required>
+                                <input type="email" placeholder="Enter your Email" name="email" required>
                             </div>
                             <div class="input-box">
                                 <span class="details">Password</span>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="input-box">
                                 <span class="details">Phone Number</span>
-                                <input type="text" placeholder="Enter your phone number" name="phoneNumber" required>
+                                <input type="number" placeholder="Enter your phone number" name="phoneNumber" required>
                             </div>
                             <div class="input-box">
                                 <span class="details">Date of Birth</span>
@@ -81,7 +81,7 @@
                             </div>
                         </div>
                         <div class="button">
-                            <input type="Submit">
+                            <button type="Submit">Submit</button>
                         </div>
                     </form>
                 </div>
