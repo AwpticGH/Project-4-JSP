@@ -65,5 +65,15 @@ INNER JOIN FlightRoute on ap1.Code = FlightRoute.Departure
 INNER JOIN Airport ap2 ON ap2.Code = FlightRoute.Destination
 WHERE FlightRoute.ID = '118';
 
+-- search query
+SELECT ap1.Name as FromAirportName, ap1.Code as FromAirportCode, ap2.Name as ToAirportName, ap2.Code as ToAirpotCode, cast(flight.TimeOfDeparture as TIME) as TimeofDeparture, flightroute.TimeOfFlight as TimeOfFlight, airline.Name as AirlineName, airline.Code as AirlineCode, flightroute.ID as RouteID, flight.ID as FlightID FROM flight INNER JOIN flightroute ON flight.flightRoute_ID = flightroute.ID INNER JOIN airport ap1 ON flightroute.Departure = ap1.Code INNER JOIN airport ap2 ON flightroute.Destination = ap2.Code INNER JOIN airplane ON flight.Airplane_ID = airplane.ID INNER JOIN airline ON airplane.Airline_Code = airline.Code WHERE ap1.City = "Tanggerang" AND ap2.City = "Padang" AND cast(flight.TimeOfDeparture as DATE) = "2022-07-10" AND airplane.EconomySeats != "0";
+
+SELECT reservedeconomyseats.ID as ReservedSeats, economyseats.ID as Seats 
+FROM reservedeconomyseats
+RIGHT JOIN economyseats ON reservedeconomyseats.SeatID = economyseats.ID
+INNER JOIN airplane ON economyseats.Airplane_ID = airplane.ID
+INNER JOIN flight ON airplane.ID = flight.Airplane_ID
+WHERE flight.ID = "1";
+
 SELECT *
 FROM EconomySeats;

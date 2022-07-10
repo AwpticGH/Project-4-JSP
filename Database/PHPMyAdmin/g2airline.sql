@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2022 at 06:39 PM
+-- Generation Time: Jul 10, 2022 at 03:41 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -9504,7 +9504,10 @@ CREATE TABLE `flight` (
 --
 
 INSERT INTO `flight` (`ID`, `Airplane_ID`, `FlightRoute_ID`, `TimeOfDeparture`) VALUES
-(1, 1, 118, '2022-05-20 09:00:00');
+(1, 1, 118, '2022-05-20 09:00:00'),
+(2, 2, 162, '2022-07-10 09:00:00'),
+(3, 10, 162, '2022-07-10 13:00:00'),
+(4, 25, 162, '2022-07-10 15:00:00');
 
 -- --------------------------------------------------------
 
@@ -13664,7 +13667,7 @@ ALTER TABLE `firstclassseats`
 -- AUTO_INCREMENT for table `flight`
 --
 ALTER TABLE `flight`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `flightroute`
