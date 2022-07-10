@@ -1,8 +1,4 @@
-<%-- 
-    Document   : footer
-    Created on : Jul 4, 2022, 8:28:48 PM
-    Author     : rafih
---%>
+
 
 <footer class="footer-distributed" id="blog">
     <div class="footer-left">
@@ -16,7 +12,7 @@
             <a href="#contact">Contact</a>
         </p>
 
-        <p class="footer-company-name">©2022 - Made With Love</p>
+        <p class="footer-company-name">ï¿½2022 - Made With Love</p>
     </div>
 
     <div class="footer-center" id="contact">

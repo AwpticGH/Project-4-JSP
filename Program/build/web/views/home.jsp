@@ -10,13 +10,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:include page="/views/layouts/head.jsp">
+        <jsp:include page="/web/views/layouts/head.jsp">
             <jsp:param name="css-file" value="home.css"/>
         </jsp:include>
     </head>
     <body>
         <!-- Ini Navbar yaaa bang ganteng -->
-        <jsp:include page="/views/layouts/navbar.jsp"></jsp:include>
+        <jsp:include page="/web/views/layouts/navbar.jsp"></jsp:include>
         
         <!-- Ini content nya ya mas -->
         <!-- Slideshow -->
@@ -50,41 +50,39 @@
                         </label>
                 </div>
             </div>
-            <div class="search-group">
-                <form action="" onSubmit="event.preventDefault();">
+            <form action="Search" method="GET">
+                <div class="search-group">
                     <div class="col-2_5 from-to" id="from">
                         <label for="from-city" class="text-gray label-form">From</label><br>
-                        <input type="text" id="from-city" name="from-city" placeholder="From City or Airport" onclick="displayListsFrom()" required><br>
-                        <div class="container-lists" id="from-city-list">
-                            <input type="text" placeholder="City or Airport" disabled>
-                            <button class="btn-cities-from">Jakarta, Indonesia</button>
-                            <button class="btn-cities-from">Surabaya, Indonesia</button>
-                            <button class="btn-cities-from">Medan, Indonesia</button>
-                            <button class="btn-cities-from">Makassar, Indonesia</button>
-                            <button class="btn-cities-from">Yogyakarta, Indonesia</button>
-                            <button class="btn-cities-from">Denpasar-Bali, Indonesia</button>
-                            <button class="btn-cities-from">Padang, Indonesia</button>
-                            <button class="btn-cities-from">Palembang, Indonesia</button>
-                            <button class="btn-cities-from">Banjarmasin, Indonesia</button>
-                            <button class="btn-cities-from">Pontianak, Indonesia</button>
-                        </div>
+                        <select name="from-city" aria-placeholder="From City" id="from-city">
+                            <option value="" disabled>City or Airport</option>
+                            <option value="Tanggerang, Indonesia" class="btn-cities-from">Tanggerang, Indonesia</option>
+                            <option value="Surabaya, Indonesia" class="btn-cities-from">Surabaya, Indonesia</option>
+                            <option value="Medan, Indonesia" class="btn-cities-from">Medan, Indonesia</option>
+                            <option value="Makassar, Indonesia" class="btn-cities-from">Makassar, Indonesia</option>
+                            <option value="Yogyakarta, Indonesia" class="btn-cities-from">Yogyakarta, Indonesia</option>
+                            <option value="Denpasar-Bali, Indonesia" class="btn-cities-from">Denpasar-Bali, Indonesia</option>
+                            <option value="Padang, Indonesia" class="btn-cities-from">Padang, Indonesia</option>
+                            <option value="Palembang, Indonesia" class="btn-cities-from">Palembang, Indonesia</option>
+                            <option value="Banjarmasin, Indonesia" class="btn-cities-from">Banjarmasin, Indonesia</option>
+                            <option value="Pontianak, Indonesia" class="btn-cities-from">Pontianak, Indonesia</option>
+                        </select>
                     </div>
                     <div class="col-2_5 from-to">
                         <label for="to-city" class="text-gray label-form">To</label><br>
-                        <input type="text" name="to-city" id="to-city" placeholder="To City or Airport" onclick="displayListsTo()" required>
-                        <div class="container-lists" id="to-city-list">
-                            <input type="text" placeholder="City or Airport" disabled>
-                            <button class="btn-cities-to">Jakarta, Indonesia</button>
-                            <button class="btn-cities-to">Surabaya, Indonesia</button>
-                            <button class="btn-cities-to">Medan, Indonesia</button>
-                            <button class="btn-cities-to">Makassar, Indonesia</button>
-                            <button class="btn-cities-to">Yogyakarta, Indonesia</button>
-                            <button class="btn-cities-to">Denpasar-Bali, Indonesia</button>
-                            <button class="btn-cities-to">Padang, Indonesia</button>
-                            <button class="btn-cities-to">Palembang, Indonesia</button>
-                            <button class="btn-cities-to">Banjarmasin, Indonesia</button>
-                            <button class="btn-cities-to">Pontianak, Indonesia</button>
-                        </div>
+                        <select name="to-city" aria-placeholder="To City" id="to-city">
+                            <option value="" disabled>City or Airport</option>
+                            <option value="Tanggerang, Indonesia" class="btn-cities-to">Tanggerang, Indonesia</option>
+                            <option value="Surabaya, Indonesia" class="btn-cities-to">Surabaya, Indonesia</option>
+                            <option value="Medan, Indonesia" class="btn-cities-to">Medan, Indonesia</option>
+                            <option value="Makassar, Indonesia" class="btn-cities-to">Makassar, Indonesia</option>
+                            <option value="Yogyakarta, Indonesia" class="btn-cities-to">Yogyakarta, Indonesia</option>
+                            <option value="Denpasar-Bali, Indonesia" class="btn-cities-to">Denpasar-Bali, Indonesia</option>
+                            <option value="Padang, Indonesia" class="btn-cities-to">Padang, Indonesia</option>
+                            <option value="Palembang, Indonesia" class="btn-cities-to">Palembang, Indonesia</option>
+                            <option value="Banjarmasin, Indonesia" class="btn-cities-to">Banjarmasin, Indonesia</option>
+                            <option value="Pontianak, Indonesia" class="btn-cities-to">Pontianak, Indonesia</option>
+                        </select>
                     </div>
                     <div class="col-2_25 departure-arrival">
                         <label for="departure-date" class="text-gray label-form">Depart Date</label><br>
@@ -97,9 +95,9 @@
                     </div>
                     <div class="col-2_5 passenger-class" onclick="displayListsPass()">
                         <label for="passenger-seat-class" class="text-gray label-form">Passenger, Seat Class</label><br>
-                        <input type="text" id="passenger-seat-class" placeholder="1 Passenger, Economy" onclick="displayListsPass()" disabled>
+                        <input type="text" name="passenger-seat-class" id="passenger-seat-class" placeholder="1 Passenger, Economy" onclick="displayListsPass()">
                         <div class="container-lists" id="passenger-list">
-                            <input type="text" placeholder="City or Airport" disabled>
+                            <input type="text" placeholder="Passenger and Seat Class" disabled>
                             <div class="col-6" id="passenger-count">
                                 <div class="row">
                                     <div class="col-2 text-center">
@@ -136,33 +134,33 @@
                                 </div>
                             </div>
                             <div class="col-6" id="seat-class">
-                                <button class="seat-class-list">Economy</button>
-                                <button class="seat-class-list">Premium Economy</button>
-                                <button class="seat-class-list">Business</button>
-                                <button class="seat-class-list">First Class</button>
+                                <button type="button" class="seat-class-list">Economy</button>
+                                <button type="button" class="seat-class-list">Premium Economy</button>
+                                <button type="button" class="seat-class-list">Business</button>
+                                <button type="button" class="seat-class-list">First Class</button>
                                 <div class="col-6 text-center">
-                                    <button class="btn-reset" onclick="resetPassSeatClass()">Reset</button>
+                                    <button type="button" class="btn-reset" onclick="resetPassSeatClass()">Reset</button>
                                 </div>
                                 <div class="col-6 text-center">
-                                    <button class="btn-done" onclick="submitPassSeatClass()">Done</button>
+                                    <button type="button" class="btn-done" onclick="submitPassSeatClass()">Done</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="footer">
-                <a href="result_remake.html"><button type="submit" class="btn-submit" disabled>Search</button></a>
-            </div>
+                </div>
+                <div class="footer">
+                    <button type="submit" class="btn-submit">Search</button>
+                </div>
+            </form>
         </div>
 
         <!-- Main Background -->
         <div class="main-background"></div>
         
         <!-- Kalo ini footer nya ka -->
-        <jsp:include page="/views/layouts/footer.jsp"></jsp:include>
+        <jsp:include page="/web/views/layouts/footer.jsp"></jsp:include>
         <!-- Nah kalo ini baru script nya >_< -->
-        <jsp:include page="/views/layouts/scripts.jsp">
+        <jsp:include page="/web/views/layouts/scripts.jsp">
             <jsp:param name="js-file" value="home.js"/>
         </jsp:include>
     </body>

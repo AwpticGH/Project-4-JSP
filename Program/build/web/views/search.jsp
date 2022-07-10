@@ -4,6 +4,8 @@
     Author     : rafih
 --%>
 
+<%@page import="Controller.SearchController" %>
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,6 +18,42 @@
         <jsp:include page="/views/layouts/navbar.jsp"></jsp:include>
         
         <!-- content -->
+        <%
+            String fromCity =(String)request.getAttribute("fromCity");
+            String toCity =(String)request.getAttribute("toCity");
+            String departDate =(String)request.getAttribute("departDate");
+            String returnDate =(String)request.getAttribute("returnDate");
+            String seatClass =(String)request.getAttribute("seatClass");
+            String passCount =(String)request.getAttribute("passCount");
+            
+            String resultFound = (String)request.getAttribute("resultFound");
+            Integer resultCounter = (Integer)request.getAttribute("resultCounter");
+            
+            String[] fromApName = new String[resultCounter];
+            String[] toApName = new String[resultCounter];
+            String[] fromApCode = new String[resultCounter];
+            String[] toApCode = new String[resultCounter];
+            String[] departTime = new String[resultCounter];
+            String[] timeOfFlight = new String[resultCounter];
+            String[] arrivalTime = new String[resultCounter];
+            String[] airlineName = new String[resultCounter];
+            String[] airlineCode = new String[resultCounter];
+            String[] routeId = new String[resultCounter];
+            String[] flightId = new String[resultCounter];
+//            
+//            for (int i = 0; i < resultCounter; i++) {
+//                fromApName[i] = (String)request.getAttribute("fromApName" + i);
+//                toApName[i] = (String)request.getAttribute("toApName" + i);
+//                fromApCode[i] = (String)request.getAttribute("fromApCode" + i);
+//                toApCode[i] = (String)request.getAttribute("toApCode" + i);
+//                departTime[i] = (String)request.getAttribute("deparTime" + i);
+//                timeOfFlight[i] = (String)request.getAttribute("timeOfFlight" + i);
+//                arrivalTime[i] = (String)request.getAttribute("arrivalTime" + i);
+//                airlineName[i] = (String)request.getAttribute("airlineName" + i);
+//                airlineCode[i] = (String)request.getAttribute("airlineCode" + i);
+//                routeId[i] = (String)request.getAttribute("routeId" + i);
+//            }
+        %>
         <!-- panel - searched -->
         <div class="panel searched shadowed">
             <div class="col-6">
@@ -46,7 +84,7 @@
             <div class="panel result shadowed" onclick="clickedResult1(), extendResult1()">
                 <div class="col-4">
                     <div class="col-12 content">
-                        <h2><img class="result-airline-logo" src="public/frontend/images/garuda_indonesia.png"> Garuda Indonesia</h2>
+                        <h2><img class="result-airline-logo" src="Images/garuda_indonesia.png"> Garuda Indonesia</h2>
                     </div>
                     <div class="col-12 content">
                         <br>
@@ -110,7 +148,7 @@
                         <div class="row">
                             <div class="col-10 panel info-panel">
                                 <div class="col-4 content">
-                                    <strong><img src="public/frontend/images/garuda_indonesia.png" alt="Logo" class="info-airline-logo"> Garuda Indonesia</strong>
+                                    <strong><img src="Images/garuda_indonesia.png" alt="Logo" class="info-airline-logo"> Garuda Indonesia</strong>
                                     <p>GA-128 - <span class="info-text-seat-class">First Class</span></p>
                                 </div>
                                 <div class="col-4 content">
@@ -133,7 +171,7 @@
             <div class="panel result-extended" id="price-1">
                 <div class="col-6 content">
                     <h3 class="price-text-title">Conditions</h3>
-                    <p><img src="public/frontend/images/garuda_indonesia.png" alt="Logo" class="info-airline-logo"> <span class="price-text-title">Garuda Indonesia</span></p>
+                    <p><img src="Images/garuda_indonesia.png" alt="Logo" class="info-airline-logo"> <span class="price-text-title">Garuda Indonesia</span></p>
                     <p>Jakarta <i class='bx bx-right-arrow-alt'></i> Bandung</p>
                     <p class="text-gray">First Class</p>
                     <hr>
@@ -150,7 +188,7 @@
                         <h3 class="no-margin-bottom">Baggage Prices</h3>
                         <p>Extra baggage purchase is not available for your flight</p>
                         <div class="col-1">
-                            <img src="public/frontend/images/garuda_indonesia.png" alt="Logo" class="price-panel-airline-logo">
+                            <img src="Images/garuda_indonesia.png" alt="Logo" class="price-panel-airline-logo">
                         </div>
                         <div class="col-11">
                             <p class="price-text-title no-margin-top" style="margin-bottom: 0;">&nbspGaruda Indonesia</p>
@@ -190,7 +228,7 @@
             <div class="panel result shadowed" onclick="clickedResult2(), extendResult2()">
                 <div class="col-4">
                     <div class="col-12 content">
-                        <h2><img class="result-airline-logo" src="public/frontend/images/garuda_indonesia.png"> Garuda Indonesia</h2>
+                        <h2><img class="result-airline-logo" src="Images/garuda_indonesia.png"> Garuda Indonesia</h2>
                     </div>
                     <div class="col-12 content">
                         <br>
@@ -255,7 +293,7 @@
                         <div class="row">
                             <div class="col-10 panel info-panel">
                                 <div class="col-4 content">
-                                    <strong><img src="public/frontend/images/garuda_indonesia.png" alt="Logo" class="info-airline-logo"> Garuda Indonesia</strong>
+                                    <strong><img src="Images/garuda_indonesia.png" alt="Logo" class="info-airline-logo"> Garuda Indonesia</strong>
                                     <p>GA-128 - <span class="info-text-seat-class">First Class</span></p>
                                 </div>
                                 <div class="col-4 content">
@@ -278,7 +316,7 @@
             <div class="panel result-extended" id="price-2">
                 <div class="col-6 content">
                     <h3 class="price-text-title">Conditions</h3>
-                    <p><img src="public/frontend/images/garuda_indonesia.png" alt="Logo" class="info-airline-logo"> <span class="price-text-title">Garuda Indonesia</span></p>
+                    <p><img src="Images/garuda_indonesia.png" alt="Logo" class="info-airline-logo"> <span class="price-text-title">Garuda Indonesia</span></p>
                     <p>Jakarta <i class='bx bx-right-arrow-alt'></i> Bandung</p>
                     <p class="text-gray">First Class</p>
                     <hr>
@@ -295,7 +333,7 @@
                         <h3 class="no-margin-bottom">Baggage Prices</h3>
                             <p>Extra baggage purchase is not available for your flight</p>
                             <div class="col-1">
-                                <img src="public/frontend/images/garuda_indonesia.png" alt="Logo" class="price-panel-airline-logo">
+                                <img src="Images/garuda_indonesia.png" alt="Logo" class="price-panel-airline-logo">
                             </div>
                             <div class="col-11">
                                 <p class="price-text-title no-margin-top" style="margin-bottom: 0;">&nbspGaruda Indonesia</p>
@@ -329,7 +367,7 @@
                 </div>
             </div>
         </div>
-        
+            
         <jsp:include page="/views/layouts/footer.jsp"></jsp:include>
         <jsp:include page="/views/layouts/scripts.jsp">
             <jsp:param name="js-file" value="search.js"></jsp:param>

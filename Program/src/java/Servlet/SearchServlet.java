@@ -4,8 +4,14 @@
  */
 package Servlet;
 
+import Controller.SearchController;
+import Helper.StringHelper;
+import Helper.TimeHelper;
+import Model.SearchModel;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -48,7 +54,103 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String fromCity = request.getParameter("from-city");
+        String toCity = request.getParameter("to-city");
+        String departDate = request.getParameter("departure-date");
+        String returnDate = request.getParameter("return-date");
+        String passAndSeat = request.getParameter("passenger-seat-class");
+        String seatClass = StringHelper.getSeatClass(passAndSeat);
+        String passCount = StringHelper.getPassCount(passAndSeat);
+        String fromApName = null;
+        String toApName = null;
+        String fromApCode = null;
+        String toApCode = null;
+        String departTime = null;
+        String timeOfFlight = null;
+        String arrivalTime = null;
+        String airlineName = null;
+        String airlineCode = null;
+        String routeId = null;
+        String flightId = null;
+        
+        System.out.println(departDate);
+        
+        SearchModel model = new SearchModel();
+        model.setFromCity(fromCity);
+        model.setToCity(toCity);
+        model.setDepartDate(departDate);
+        
+        try {
+            SearchController sc = new SearchController();
+            ResultSet rs = sc.search(model);
+            boolean resultFound = false;
+            int resultCounter = 0;
+            processRequest(request, response);
+            
+            if (rs.isBeforeFirst()) {
+                resultFound = true;
+                
+                request.setAttribute("departDate", departDate);
+                request.setAttribute("returnDate", returnDate);
+                request.setAttribute("seatClass", seatClass);
+                request.setAttribute("passCount", passCount);
+                while (rs.next()) {
+                    System.out.println("result " + ((Integer)resultCounter+1));
+
+                    fromApName = rs.getString(1);
+                    fromCity = rs.getString(2);
+                    fromApCode = rs.getString(3);
+                    toApName = rs.getString(4);
+                    toCity = rs.getString(5);
+                    toApCode = rs.getString(6);
+                    departTime = rs.getString(7);
+                    timeOfFlight = rs.getString(8);
+                    arrivalTime = TimeHelper.addTime(departTime, timeOfFlight);
+                    airlineName = rs.getString(9);
+                    airlineCode = rs.getString(10);
+                    routeId = rs.getString(11);
+                    flightId = rs.getString(12);
+                    
+                    request.setAttribute("fromCity", fromCity);
+                    request.setAttribute("toCity", toCity);
+                    request.setAttribute("fromApName" + resultCounter, fromApName);
+                    request.setAttribute("toApName" + resultCounter, toApName);
+                    request.setAttribute("fromApCode" + resultCounter, fromApCode);
+                    request.setAttribute("toApCode" + resultCounter, toApCode);
+                    request.setAttribute("departTime" + resultCounter, departTime);
+                    request.setAttribute("timeOfFlight" + resultCounter, timeOfFlight);
+                    request.setAttribute("arrivalTime" + resultCounter, arrivalTime);
+                    request.setAttribute("airlineName" + resultCounter, airlineName);
+                    request.setAttribute("airlineCode" + resultCounter, airlineCode);
+                    request.setAttribute("routeId" + resultCounter, routeId);
+                    request.setAttribute("flightId" + resultCounter, flightId);
+                    
+                    System.out.println(request.getAttribute("fromApName" + resultCounter));
+                    System.out.println(request.getAttribute("toApName" + resultCounter));
+                    System.out.println(request.getAttribute("fromApCode" + resultCounter));
+                    System.out.println(request.getAttribute("toApCode" + resultCounter));
+                    System.out.println(request.getAttribute("departTime" + resultCounter));
+                    System.out.println(request.getAttribute("timeOfFlight" + resultCounter));
+                    System.out.println(request.getAttribute("arrivalTime" + resultCounter));
+                    System.out.println(request.getAttribute("airlineName" + resultCounter));
+                    System.out.println(request.getAttribute("airlineCode" + resultCounter));
+                    System.out.println(request.getAttribute("routeId" + resultCounter));
+                    System.out.println(request.getAttribute("flightId" + resultCounter));
+                    
+                    resultCounter++;
+                }
+                request.setAttribute("resultFound", resultFound);
+                request.setAttribute("resultCounter", resultCounter);
+                System.out.println(request.getAttribute("resultCounter"));
+            }
+            else {
+                resultFound = false;
+            }
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
