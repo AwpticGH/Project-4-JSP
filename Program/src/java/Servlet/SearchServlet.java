@@ -58,10 +58,6 @@ public class SearchServlet extends HttpServlet {
         String fromCity = request.getParameter("from-city");
         String toCity = request.getParameter("to-city");
         String departDate = request.getParameter("departure-date");
-        String returnDate = request.getParameter("return-date");
-        String passAndSeat = request.getParameter("passenger-seat-class");
-        String seatClass = StringHelper.getSeatClass(passAndSeat);
-        String passCount = StringHelper.getPassCount(passAndSeat);
         String fromApName = null;
         String toApName = null;
         String fromApCode = null;
@@ -86,15 +82,11 @@ public class SearchServlet extends HttpServlet {
             ResultSet rs = sc.search(model);
             boolean resultFound = false;
             int resultCounter = 0;
-            processRequest(request, response);
             
             if (rs.isBeforeFirst()) {
                 resultFound = true;
                 
-                request.setAttribute("departDate", departDate);
-                request.setAttribute("returnDate", returnDate);
-                request.setAttribute("seatClass", seatClass);
-                request.setAttribute("passCount", passCount);
+                
                 while (rs.next()) {
                     System.out.println("result " + ((Integer)resultCounter+1));
 
@@ -104,7 +96,7 @@ public class SearchServlet extends HttpServlet {
                     toApName = rs.getString(4);
                     toCity = rs.getString(5);
                     toApCode = rs.getString(6);
-                    departTime = rs.getString(7);
+                    departTime = TimeHelper.removeSecondsFromTime(rs.getString(7));
                     timeOfFlight = rs.getString(8);
                     arrivalTime = TimeHelper.addTime(departTime, timeOfFlight);
                     airlineName = rs.getString(9);
@@ -126,6 +118,10 @@ public class SearchServlet extends HttpServlet {
                     request.setAttribute("routeId" + resultCounter, routeId);
                     request.setAttribute("flightId" + resultCounter, flightId);
                     
+                    
+                    
+                    System.out.println(request.getAttribute("fromCity"));
+                    System.out.println(request.getAttribute("toCity"));
                     System.out.println(request.getAttribute("fromApName" + resultCounter));
                     System.out.println(request.getAttribute("toApName" + resultCounter));
                     System.out.println(request.getAttribute("fromApCode" + resultCounter));
@@ -140,13 +136,14 @@ public class SearchServlet extends HttpServlet {
                     
                     resultCounter++;
                 }
-                request.setAttribute("resultFound", resultFound);
                 request.setAttribute("resultCounter", resultCounter);
                 System.out.println(request.getAttribute("resultCounter"));
             }
             else {
                 resultFound = false;
             }
+            request.setAttribute("resultFound", resultFound);
+            processRequest(request, response);
         }
         catch (SQLException e) {
             System.out.println(e.getMessage());
