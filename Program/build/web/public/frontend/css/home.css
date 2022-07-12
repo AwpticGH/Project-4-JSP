@@ -101,8 +101,7 @@ input {
     text-decoration: none;
     color: black;
 }
- /*ini bajingan*/
- 
+
 .select-box {
     display: flex;
     width: 150px;
@@ -209,7 +208,7 @@ form .from-to {
 }
 
 form .from-to input {
-   display: block; 
+    /* display: block; */
     width: 100%;
     height: 2rem;
     margin: 0;

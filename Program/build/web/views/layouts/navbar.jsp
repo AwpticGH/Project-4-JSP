@@ -3,11 +3,14 @@
     Created on : Jul 4, 2022, 8:28:12 PM
     Author     : rafih
 --%>
-<%@page import="Controller.AccountController"%>
 <%@page import="java.sql.ResultSet"%>
+<%
+    boolean isLoggedIn = (Boolean)request.getAttribute("status");
+%>
+
 <div class="wrapper" id="wrapper">
     <nav>
-        <input type="hidden" name="status" id="status" value="<%= session.getAttribute("status")%>">
+        <input type="hidden" name="status" id="status" value="<%= isLoggedIn%>">
         <div class="container-flex">
             <div class="brand">
                 <a href="Home">G2 Airline</a>
@@ -23,6 +26,7 @@
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="#blog">Blog</a></li>
                 <!-- logged out -->
+                <% if (!isLoggedIn) { %>
                 <li id="trigger-login">
                     <a href="#wrapper" id="nav-login">Login</a>
                     <div id="login-panel">
@@ -45,15 +49,28 @@
                         </form>
                     </div>
                 </li>
+                <% } %>
                 <!-- logged in -->
-                <li id="trigger-user">
-                    <a href="#wrapper" id="nav-user" name="username"><%= session.getAttribute("username")%></a>
-                    <div id="user-panel">
-                        <form action="Logout">
-                            <button type="Submit">Logout</button>
-                        </form>
-                    </div>
-                </li>                    
+                <% if (isLoggedIn) {
+                    ResultSet accountRs = (ResultSet)request.getAttribute("accountRs");
+                    accountRs.first(); %>
+                        <li id="trigger-user">
+                            <a href="#wrapper" id="nav-user" name="username"><%= accountRs.getString("Username")%></a>
+                            <input type="hidden" name="accountId" value="<%= accountRs.getString("ID")%>">
+                            <div id="user-panel">
+                                <form action="Account" method="GET" onsubmit="<% request.setAttribute("accountId", accountRs.getString("ID"));%>">
+                                    <button type="Submit">Account</button>
+                                </form>
+                                <form action="Ticket" method="GET">
+                                    <input type="hidden" name="accountId" value="<%= accountRs.getString("ID")%>">
+                                    <button type="Submit">Ticket</button>
+                                </form>
+                                <form action="Logout">
+                                    <button type="Submit">Logout</button>
+                                </form>
+                            </div>
+                        </li>
+                <% } %>
             </ul>
         </div>
     </nav>
