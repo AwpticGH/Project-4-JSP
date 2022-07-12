@@ -24,4 +24,5 @@ public class StringHelper {
         String[] seatClass = text.split(" ");
         return seatClass[2];
     }
+
 }

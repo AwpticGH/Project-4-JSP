@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Helper.StringHelper;
 import Model.AccountModel;
 import Query.AccountQuery;
 import java.sql.Connection;
@@ -58,4 +59,19 @@ public class AccountController extends BaseController {
         
         return super.preparedStatement(map, sql);
     }
+    public boolean update(String id, AccountModel model) throws ParseException {
+        
+        Map<Integer, Object> map = new HashMap<>();
+        map.put(1, model.getName());
+        map.put(2, model.getAge());
+        map.put(3, model.getStock());
+        map.put(4, model.getPrice());
+        map.put(5, model.getExpired());
+        map.put(6, id);
+        
+        String sql = this.query.update;
+        
+        return this.preparedStatement(map, sql);
+    }
+
 }

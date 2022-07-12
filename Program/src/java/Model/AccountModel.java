@@ -19,6 +19,7 @@ public class AccountModel {
     private String gender;
     private String title;
     private String phoneNumber;
+    private string age;
     
     public void setId(String id) {
         this.id = id;
@@ -91,4 +92,5 @@ public class AccountModel {
     public String getPhoneNumber() {
         return phoneNumber;
     }
+
 }

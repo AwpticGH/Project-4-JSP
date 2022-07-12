@@ -12,4 +12,6 @@ public class AccountQuery {
     public String login = "SELECT * FROM users WHERE Email = ? AND Password = ?";
     public String register = "INSERT INTO users (Email, Password, Name, Gender, Title, DateOfBirth, PhoneNumber) VALUES"
             + "(?, ?, ?, ?, ?, ?, ?)";
+    public String getById;
+    public String getByName;
 }
