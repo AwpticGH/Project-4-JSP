@@ -53,36 +53,111 @@
             <form action="Search" method="GET">
                 <div class="search-group">
                     <div class="col-2_5 from-to" id="from">
-                        <label for="from-city" class="text-gray label-form">From</label><br>
-                        <select name="from-city" aria-placeholder="From City" id="from-city">
-                            <option value="" disabled>City or Airport</option>
-                            <option value="Tanggerang, Indonesia" class="btn-cities-from">Tanggerang, Indonesia</option>
-                            <option value="Surabaya, Indonesia" class="btn-cities-from">Surabaya, Indonesia</option>
-                            <option value="Medan, Indonesia" class="btn-cities-from">Medan, Indonesia</option>
-                            <option value="Makassar, Indonesia" class="btn-cities-from">Makassar, Indonesia</option>
-                            <option value="Yogyakarta, Indonesia" class="btn-cities-from">Yogyakarta, Indonesia</option>
-                            <option value="Denpasar-Bali, Indonesia" class="btn-cities-from">Denpasar-Bali, Indonesia</option>
-                            <option value="Padang, Indonesia" class="btn-cities-from">Padang, Indonesia</option>
-                            <option value="Palembang, Indonesia" class="btn-cities-from">Palembang, Indonesia</option>
-                            <option value="Banjarmasin, Indonesia" class="btn-cities-from">Banjarmasin, Indonesia</option>
-                            <option value="Pontianak, Indonesia" class="btn-cities-from">Pontianak, Indonesia</option>
-                        </select>
+                        <div class="select-box">
+            <div class="options-container">
+                <div class="option">
+                    <input type="radio" class="radio" value="Tanggerang, Indonesia" name="fromCity" />
+                    <label for="Tanggerang">Tanggerang, Indonesia</label>
+                </div>
+
+                <div class="option">
+                    <input type="radio" class="radio" value="Surabaya, Indonesia" name="fromCity" />
+                    <label for="Surabaya">Surabaya, Indonesia</label>
+                </div>
+
+                <div class="option">
+                    <input type="radio" class="radio" value="Medan, Indonesia" name="fromCity" />
+                    <label for="Medan">Medan, Indonesia</label>
+                </div>
+
+                <div class="option">
+                    <input type="radio" class="radio" value="Makassar, Indonesia" name="fromCity" />
+                    <label for="Makassar">Makassar, Indonesia</label>
+                </div>
+
+                <div class="option">
+                    <input type="radio" class="radio" value="Yogyakarta, Indonesia" name="fromCity" />
+                    <label for="Yogyakarta">Yogyakarta, Indonesia</label>
+                </div>
+
+                <div class="option">
+                    <input type="radio" class="radio" value="Denpasar-Bali, Indonesia" name="fromCity" />
+                    <label for="Denpasar-Bali">Denpasar-Bali, Indonesia</label>
+                </div>
+
+                <div class="option">
+                    <input type="radio" class="radio" value="Padang, Indonesia" name="fromCity" />
+                    <label for="Padang">Padang, Indonesia</label>
+                </div>
+
+                <div class="option">
+                    <input type="radio" class="radio" value="Palembang, Indonesia" name="fromCity" />
+                    <label for="Palembang">Palembang, Indonesia</label>
+                </div>
+
+                <div class="option">
+                    <input type="radio" class="radio" value="Banjarmasin, Indonesia" name="fromCity" />
+                    <label for="Banjarmasin">Banjarmasin, Indonesia</label>
+                </div>
+            </div>
+
+            <div class="selected">
+                Select City From
+            </div>
+        </div>
                     </div>
                     <div class="col-2_5 from-to">
-                        <label for="to-city" class="text-gray label-form">To</label><br>
-                        <select name="to-city" aria-placeholder="To City" id="to-city">
-                            <option value="" disabled>City or Airport</option>
-                            <option value="Tanggerang, Indonesia" class="btn-cities-to">Tanggerang, Indonesia</option>
-                            <option value="Surabaya, Indonesia" class="btn-cities-to">Surabaya, Indonesia</option>
-                            <option value="Medan, Indonesia" class="btn-cities-to">Medan, Indonesia</option>
-                            <option value="Makassar, Indonesia" class="btn-cities-to">Makassar, Indonesia</option>
-                            <option value="Yogyakarta, Indonesia" class="btn-cities-to">Yogyakarta, Indonesia</option>
-                            <option value="Denpasar-Bali, Indonesia" class="btn-cities-to">Denpasar-Bali, Indonesia</option>
-                            <option value="Padang, Indonesia" class="btn-cities-to">Padang, Indonesia</option>
-                            <option value="Palembang, Indonesia" class="btn-cities-to">Palembang, Indonesia</option>
-                            <option value="Banjarmasin, Indonesia" class="btn-cities-to">Banjarmasin, Indonesia</option>
-                            <option value="Pontianak, Indonesia" class="btn-cities-to">Pontianak, Indonesia</option>
-                        </select>
+                        <div class="select-box">
+            <div class="options-container">
+                <div class="option">
+                    <input type="radio" class="radio" value="Tanggerang, Indonesia" name="toCity" />
+                    <label for="Tanggerang">Tanggerang, Indonesia</label>
+                </div>
+
+                <div class="option">
+                    <input type="radio" class="radio" value="Surabaya, Indonesia" name="toCity" />
+                    <label for="Surabaya">Surabaya, Indonesia</label>
+                </div>
+
+                <div class="option">
+                    <input type="radio" class="radio" value="Medan, Indonesia" name="toCity" />
+                    <label for="Medan">Medan, Indonesia</label>
+                </div>
+
+                <div class="option">
+                    <input type="radio" class="radio" value="Makassar, Indonesia" name="toCity" />
+                    <label for="Makassar">Makassar, Indonesia</label>
+                </div>
+
+                <div class="option">
+                    <input type="radio" class="radio" value="Yogyakarta, Indonesia" name="toCity />
+                    <label for="Yogyakarta">Yogyakarta, Indonesia</label>
+                </div>
+
+                <div class="option">
+                    <input type="radio" class="radio" value="Denpasar-Bali, Indonesia" name="toCity" />
+                    <label for="Denpasar-Bali">Denpasar-Bali, Indonesia</label>
+                </div>
+
+                <div class="option">
+                    <input type="radio" class="radio" value="Padang, Indonesia" name="toCity" />
+                    <label for="Padang">Padang, Indonesia</label>
+                </div>
+
+                <div class="option">
+                    <input type="radio" class="radio" value="Palembang, Indonesia" name="toCity" />
+                    <label for="Palembang">Palembang, Indonesia</label>
+                </div>
+
+                <div class="option">
+                    <input type="radio" class="radio" value="Banjarmasin, indonesia" name="toCity" />
+                    <label for="Banjarmasin">Banjarmasin, Indonesia</label>
+                </div>
+            </div>
+            <div class="selected">
+                Select City To
+            </div>
+        </div>
                     </div>
                     <div class="col-2_25 departure-arrival">
                         <label for="departure-date" class="text-gray label-form">Depart Date</label><br>

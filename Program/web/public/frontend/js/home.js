@@ -125,6 +125,22 @@ const allElement = document.getElementsByTagName("*");
 //
 // // masalahnya adalah ketika style.filter = brightness() sudah berjalan, style.display tidak berjalan????????? ADA APA DENGAN JAVASCRIPT?!?!?!?!!?!
 
+const selected = document.querySelector(".selected");
+const optionsContainer = document.querySelector(".options-container");
+
+const optionsList = document.querySelectorAll(".option");
+
+selected.addEventListener("click", () => {
+    optionsContainer.classList.toggle("active");
+});
+
+optionsList.forEach(o => {
+    o.addEventListener("click", () => {
+        selected.innerHTML = o.querySelector("label").innerHTML;
+        optionsContainer.classList.remove("active");
+    });
+});
+
 var fromContainer = document.getElementById("from-city-list");
 var toContainer = document.getElementById("to-city-list");
 var passContainer = document.getElementById("passenger-list");
