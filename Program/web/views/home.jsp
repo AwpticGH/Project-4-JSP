@@ -54,111 +54,107 @@
                 <div class="search-group">
                     <div class="col-2_5 from-to" id="from">
                         <div class="select-box">
-            <div class="options-container">
-                <div class="option">
-                    <input type="radio" class="radio" value="Tanggerang, Indonesia" name="fromCity" />
-                    <label for="Tanggerang">Tanggerang, Indonesia</label>
-                </div>
+                            <div class="options-container">
+                                <div class="option">
+                                    <input type="radio" class="radio" value="Tanggerang, Indonesia" name="from-city" />
+                                    <label for="Tanggerang, Indonesia">Tanggerang, Indonesia</label>
+                                </div>
 
-                <div class="option">
-                    <input type="radio" class="radio" value="Surabaya, Indonesia" name="fromCity" />
-                    <label for="Surabaya">Surabaya, Indonesia</label>
-                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" value="Surabaya, Indonesia" name="from-city" />
+                                    <label for="Surabaya, Indonesia">Surabaya, Indonesia</label>
+                                </div>
 
-                <div class="option">
-                    <input type="radio" class="radio" value="Medan, Indonesia" name="fromCity" />
-                    <label for="Medan">Medan, Indonesia</label>
-                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" value="Medan, Indonesia" name="from-city" />
+                                    <label for="Medan, Indonesia">Medan, Indonesia</label>
+                                </div>
 
-                <div class="option">
-                    <input type="radio" class="radio" value="Makassar, Indonesia" name="fromCity" />
-                    <label for="Makassar">Makassar, Indonesia</label>
-                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" value="Makassar, Indonesia" name="from-city" />
+                                    <label for="Makassar, Indonesia">Makassar, Indonesia</label>
+                                </div>
 
-                <div class="option">
-                    <input type="radio" class="radio" value="Yogyakarta, Indonesia" name="fromCity" />
-                    <label for="Yogyakarta">Yogyakarta, Indonesia</label>
-                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" value="Yogyakarta, Indonesia" name="from-city" />
+                                    <label for="Yogyakarta, Indonesia">Yogyakarta, Indonesia</label>
+                                </div>
 
-                <div class="option">
-                    <input type="radio" class="radio" value="Denpasar-Bali, Indonesia" name="fromCity" />
-                    <label for="Denpasar-Bali">Denpasar-Bali, Indonesia</label>
-                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" value="Denpasar-Bali, Indonesia" name="from-city" />
+                                    <label for="Denpasar-Bali, Indonesia">Denpasar-Bali, Indonesia</label>
+                                </div>
 
-                <div class="option">
-                    <input type="radio" class="radio" value="Padang, Indonesia" name="fromCity" />
-                    <label for="Padang">Padang, Indonesia</label>
-                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" value="Padang, Indonesia" name="from-city" />
+                                    <label for="Padang, Indonesia">Padang, Indonesia</label>
+                                </div>
 
-                <div class="option">
-                    <input type="radio" class="radio" value="Palembang, Indonesia" name="fromCity" />
-                    <label for="Palembang">Palembang, Indonesia</label>
-                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" value="Palembang, Indonesia" name="from-city" />
+                                    <label for="Palembang, Indonesia">Palembang, Indonesia</label>
+                                </div>
 
-                <div class="option">
-                    <input type="radio" class="radio" value="Banjarmasin, Indonesia" name="fromCity" />
-                    <label for="Banjarmasin">Banjarmasin, Indonesia</label>
-                </div>
-            </div>
-
-            <div class="selected">
-                Select City From
-            </div>
-        </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" value="Banjarmasin, Indonesia" name="from-city" />
+                                    <label for="Banjarmasin, Indonesia">Banjarmasin, Indonesia</label>
+                                </div>
+                            </div>
+                            <div class="selected">
+                                Select City From
+                            </div>
+                        </div>
                     </div>
                     <div class="col-2_5 from-to">
                         <div class="select-box">
-            <div class="options-container">
-                <div class="option">
-                    <input type="radio" class="radio" value="Tanggerang, Indonesia" name="toCity" />
-                    <label for="Tanggerang">Tanggerang, Indonesia</label>
-                </div>
+                            <div class="options-container">
+                                <div class="option">
+                                    <input type="radio" class="radio" value="Tanggerang, Indonesia" name="to-city" />
+                                    <label for="Tanggerang, Indonesia">Tanggerang, Indonesia</label>
+                                </div>
 
-                <div class="option">
-                    <input type="radio" class="radio" value="Surabaya, Indonesia" name="toCity" />
-                    <label for="Surabaya">Surabaya, Indonesia</label>
-                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" value="Surabaya, Indonesia" name="to-city" />
+                                    <label for="Surabaya, Indonesia">Surabaya, Indonesia</label>
+                                </div>
 
-                <div class="option">
-                    <input type="radio" class="radio" value="Medan, Indonesia" name="toCity" />
-                    <label for="Medan">Medan, Indonesia</label>
-                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" value="Medan, Indonesia" name="to-city" />
+                                    <label for="Medan, Indonesia">Medan, Indonesia</label>
+                                </div>
 
-                <div class="option">
-                    <input type="radio" class="radio" value="Makassar, Indonesia" name="toCity" />
-                    <label for="Makassar">Makassar, Indonesia</label>
-                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" value="Makassar, Indonesia" name="to-city" />
+                                    <label for="Makassar, Indonesia">Makassar, Indonesia</label>
+                                </div>
 
-                <div class="option">
-                    <input type="radio" class="radio" value="Yogyakarta, Indonesia" name="toCity />
-                    <label for="Yogyakarta">Yogyakarta, Indonesia</label>
-                </div>
-
-                <div class="option">
-                    <input type="radio" class="radio" value="Denpasar-Bali, Indonesia" name="toCity" />
-                    <label for="Denpasar-Bali">Denpasar-Bali, Indonesia</label>
-                </div>
-
-                <div class="option">
-                    <input type="radio" class="radio" value="Padang, Indonesia" name="toCity" />
-                    <label for="Padang">Padang, Indonesia</label>
-                </div>
-
-                <div class="option">
-                    <input type="radio" class="radio" value="Palembang, Indonesia" name="toCity" />
-                    <label for="Palembang">Palembang, Indonesia</label>
-                </div>
-
-                <div class="option">
-                    <input type="radio" class="radio" value="Banjarmasin, indonesia" name="toCity" />
-                    <label for="Banjarmasin">Banjarmasin, Indonesia</label>
-                </div>
-            </div>
-            <div class="selected">
-                Select City To
-            </div>
-        </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" value="Yogyakarta, Indonesia" name="to-city" />
+                                    <label for="Yogyakarta, Indonesia">Yogyakarta, Indonesia</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" value="Denpasar-Bali, Indonesia" name="to-city" />
+                                    <label for="Denpasar-Bali, Indonesia">Denpasar-Bali, Indonesia</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" value="Padang, Indonesia" name="to-city" />
+                                    <label for="Padang, Indonesia">Padang, Indonesia</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" value="Palembang, Indonesia" name="to-city" />
+                                    <label for="Palembang, Indonesia">Palembang, Indonesia</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" value="Banjarmasin, indonesia" name="to-city" />
+                                    <label for="Banjarmasin, Indonesia">Banjarmasin, Indonesia</label>
+                                </div>
+                            </div>
+                            <div class="selected">
+                                Select City To
+                            </div>
+                        </div>
                     </div>
+
                     <div class="col-2_25 departure-arrival">
                         <label for="departure-date" class="text-gray label-form">Depart Date</label><br>
                         <input type="date" name="departure-date" id="departure-date">
@@ -170,41 +166,41 @@
                     </div>
                     <div class="col-2_5 passenger-class" onclick="displayListsPass()">
                         <label for="passenger-seat-class" class="text-gray label-form">Passenger, Seat Class</label><br>
-                        <input type="text" name="passenger-seat-class" id="passenger-seat-class" placeholder="1 Passenger, Economy" onclick="displayListsPass()">
+                        <input type="text" name="passenger-seat-class" id="passenger-seat-class" value="1 Passenger, Economy" onclick="displayListsPass()" readonly>
                         <div class="container-lists" id="passenger-list">
                             <input type="text" placeholder="Passenger and Seat Class" disabled>
                             <div class="col-6" id="passenger-count">
                                 <div class="row">
                                     <div class="col-2 text-center">
-                                        <button class="btn-decrease">-</button>
+                                        <button type="button" class="btn-decrease">-</button>
                                     </div>
                                     <div class="col-8 text-center">
                                         <p>Adult</p>
                                     </div>
                                     <div class="col-2 text-center">
-                                        <button class="btn-increase">+</button>
+                                        <button type="button" class="btn-increase">+</button>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-2 text-center">
-                                        <button class="btn-decrease">-</button>
+                                        <button type="button" class="btn-decrease">-</button>
                                     </div>
                                     <div class="col-8 text-center">
                                         <p>Child</p>
                                     </div>
                                     <div class="col-2 text-center">
-                                        <button class="btn-increase">+</button>
+                                        <button type="button" class="btn-increase">+</button>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-2 text-center">
-                                        <button class="btn-decrease">-</button>
+                                        <button type="button" class="btn-decrease">-</button>
                                     </div>
                                     <div class="col-8 text-center">
                                         <p>Infant</p>
                                     </div>
                                     <div class="col-2 text-center">
-                                        <button class="btn-increase">+</button>
+                                        <button type="button" class="btn-increase">+</button>
                                     </div>
                                 </div>
                             </div>

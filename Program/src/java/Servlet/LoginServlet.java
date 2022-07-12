@@ -31,6 +31,25 @@ public class LoginServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private static boolean isLoggedIn = false;
+    private static ResultSet rs = null;
+    
+    protected void setStatus(boolean isLoggedIn) {
+        this.isLoggedIn = isLoggedIn;
+    }
+    
+    protected void setAccountInfo(ResultSet rs) {
+        this.rs = rs;
+    }
+    
+    public static boolean getStatus() {
+        return isLoggedIn;
+    }
+    
+    public static ResultSet getAccountInfo() {
+        return rs;
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -52,66 +71,30 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         try {
+            processRequest(request, response);
             AccountModel model = new AccountModel();
             model.setEmail(email);
             model.setPassword(password);
             
             AccountController ac = new AccountController();
             ResultSet rs = ac.login(model);
-            rs.first();
-            model.setUsername(rs.getString("Username"));
-            model.setEmail(rs.getString("Email"));
-            model.setPassword(rs.getString("Password"));
-            model.setName(rs.getString("Name"));
-            model.setGender(rs.getString("Gender"));
-            model.setTitle(rs.getString("Title"));
-            model.setDob(rs.getString("DateOfBirth"));
-            model.setPhoneNumber(rs.getString("PhoneNumber"));
-            ac.setAccount(session, model);
+            boolean isLoggedIn = false;
             
-//            session.setAttribute("username", model.getUsername());
+            if (rs.isBeforeFirst()) {
+                request.setAttribute("accountRs", rs);
+                isLoggedIn = true;
+            }
+            this.setStatus(isLoggedIn);
+            this.setAccountInfo(rs);
+            request.setAttribute("status", isLoggedIn);
             
-//            while (rs.next()) {
-//                model.setUsername(rs.getString("Username"));
-//                model.setEmail(rs.getString("Email"));
-//                model.setPassword(rs.getString("Password"));
-//                model.setName(rs.getString("Name"));
-//                model.setGender(rs.getString("Gender"));
-//                model.setTitle(rs.getString("Title"));
-//                model.setDob(rs.getString("DateOfBirth"));
-//                model.setPhoneNumber(rs.getString("PhoneNumber"));
-//                
-//                session.setAttribute(status, "login");
-//                session.setAttribute(username, model.getUsername());
-//                session.setAttribute(email, model.getEmail());
-//                session.setAttribute(password, model.getPassword());
-//                session.setAttribute(name, model.getName());
-//                session.setAttribute(gender, model.getGender());
-//                session.setAttribute(title, model.getTitle());
-//                session.setAttribute(dob, model.getDob());
-//                session.setAttribute(phoneNumber, model.getPhoneNumber());
-//            }
-//            else {
-//                session.setAttribute(status, "logout");
-//                session.setAttribute(username, null);
-//                session.setAttribute(email, null);
-//                session.setAttribute(password, null);
-//                session.setAttribute(name, null);
-//                session.setAttribute(gender, null);
-//                session.setAttribute(title, null);
-//                session.setAttribute(dob, null);
-//                session.setAttribute(phoneNumber, null);
-//            }
         }
         catch(Exception e) {
             System.out.println(e.getMessage());
         }
-        
-        processRequest(request, response);
     }
 
     /**

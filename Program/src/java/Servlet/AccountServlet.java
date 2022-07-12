@@ -4,19 +4,22 @@
  */
 package Servlet;
 
+import Controller.AccountController;
+import Model.AccountModel;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author rafih
  */
-public class LogoutServlet extends LoginServlet {
+public class AccountServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -27,22 +30,26 @@ public class LogoutServlet extends LoginServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            super.setStatus(false);
-            super.setAccountInfo(null);
-            response.sendRedirect("Home");
-            
-            
-//            if (request.getRequestURI().equals("/Program/Logout")) {
-//                response.sendRedirect("Register");
-//            }
-//            else {
-//                response.sendRedirect("Home");
-//            }
+            /* TODO output your page here. You may use following sample code. */
+            if (request.getSession().isNew()) {
+                request.setAttribute("status", false);
+            }
+            else {
+                boolean isLoggedIn = LoginServlet.getStatus();
+                if (isLoggedIn) {
+                    ResultSet rs = LoginServlet.getAccountInfo();
+                    request.setAttribute("accountRs", rs);
+                    
+                }
+                request.setAttribute("status", isLoggedIn);
+            }
+
+            RequestDispatcher dispatch = request.getRequestDispatcher("/views/account-profile.jsp");
+            dispatch.forward(request, response);
         }
     }
 
@@ -72,7 +79,41 @@ public class LogoutServlet extends LoginServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String id = request.getParameter("accountId");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String name = request.getParameter("name");
+        String dob = request.getParameter("dob");
+        String gender = request.getParameter("gender");
+        String title = request.getParameter("title");
+        String phoneNumber = request.getParameter("phoneNumber");
+        
+        AccountModel model = new AccountModel();
+        model.setId(id);
+        model.setEmail(email);
+        model.setPassword(password);
+        model.setName(name);
+        model.setDob(dob);
+        model.setGender(gender);
+        model.setTitle(title);
+        model.setPhoneNumber(phoneNumber);
+        
+        System.out.println(id);
+        System.out.println(email);
+        System.out.println(password);
+        System.out.println(name);
+        System.out.println(dob);
+        System.out.println(gender);
+        System.out.println(title);
+        System.out.println(phoneNumber);
+        
+        AccountController ac = new AccountController();
+        boolean updated = ac.updateAccount(model);
+        
+        if (updated) {
+//            response.sendRedirect("Home");
+            processRequest(request, response);
+        }
     }
 
     /**

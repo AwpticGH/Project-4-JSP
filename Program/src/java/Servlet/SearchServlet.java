@@ -37,6 +37,19 @@ public class SearchServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
+            if (request.getSession().isNew()) {
+                request.setAttribute("status", false);
+            }
+            else {
+                boolean isLoggedIn = LoginServlet.getStatus();
+                if (isLoggedIn) {
+                    ResultSet rs = LoginServlet.getAccountInfo();
+                    request.setAttribute("accountRs", rs);
+                    
+                }
+                request.setAttribute("status", isLoggedIn);
+            }
+            
             RequestDispatcher dispatch = request.getRequestDispatcher("/views/search.jsp");
             dispatch.forward(request, response);
         }
@@ -70,8 +83,6 @@ public class SearchServlet extends HttpServlet {
         String routeId = null;
         String flightId = null;
         
-        System.out.println(departDate);
-        
         SearchModel model = new SearchModel();
         model.setFromCity(fromCity);
         model.setToCity(toCity);
@@ -88,8 +99,6 @@ public class SearchServlet extends HttpServlet {
                 
                 
                 while (rs.next()) {
-                    System.out.println("result " + ((Integer)resultCounter+1));
-
                     fromApName = rs.getString(1);
                     fromCity = rs.getString(2);
                     fromApCode = rs.getString(3);
@@ -118,26 +127,9 @@ public class SearchServlet extends HttpServlet {
                     request.setAttribute("routeId" + resultCounter, routeId);
                     request.setAttribute("flightId" + resultCounter, flightId);
                     
-                    
-                    
-                    System.out.println(request.getAttribute("fromCity"));
-                    System.out.println(request.getAttribute("toCity"));
-                    System.out.println(request.getAttribute("fromApName" + resultCounter));
-                    System.out.println(request.getAttribute("toApName" + resultCounter));
-                    System.out.println(request.getAttribute("fromApCode" + resultCounter));
-                    System.out.println(request.getAttribute("toApCode" + resultCounter));
-                    System.out.println(request.getAttribute("departTime" + resultCounter));
-                    System.out.println(request.getAttribute("timeOfFlight" + resultCounter));
-                    System.out.println(request.getAttribute("arrivalTime" + resultCounter));
-                    System.out.println(request.getAttribute("airlineName" + resultCounter));
-                    System.out.println(request.getAttribute("airlineCode" + resultCounter));
-                    System.out.println(request.getAttribute("routeId" + resultCounter));
-                    System.out.println(request.getAttribute("flightId" + resultCounter));
-                    
                     resultCounter++;
                 }
                 request.setAttribute("resultCounter", resultCounter);
-                System.out.println(request.getAttribute("resultCounter"));
             }
             else {
                 resultFound = false;

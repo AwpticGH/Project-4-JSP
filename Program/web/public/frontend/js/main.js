@@ -59,29 +59,24 @@ document.querySelectorAll('.focusable').forEach(value => {
     value.addEventListener("click", (ev) => {
         ev.stopPropagation();
         focusElement(value);
-    })
+    });
 });
 
-document.getElementById('trigger-login').addEventListener('click', (ev) => {
-    ev.stopPropagation();
-    focusElement(loginPanel);
-})
 
-document.getElementById('trigger-user').addEventListener('click', (ev) => {
-    ev.stopPropagation();
-    focusElement(userPanel);
-})
+
+
+
 
 const status = document.getElementById("status").value;
-if (status === "login") {
-    navLogin.style.display = "none";
-    navUser.style.display = "block";
+if (status === "true") {
+    document.getElementById('trigger-user').addEventListener('click', (ev) => {
+    ev.stopPropagation();
+    focusElement(userPanel);
+});
 }
 else {
-    navLogin.style.display = "block";
-    navUser.style.display = "none";
-}
-
-function logout() {
-    status = "logout";
+    document.getElementById('trigger-login').addEventListener('click', (ev) => {
+    ev.stopPropagation();
+    focusElement(loginPanel);
+});
 }

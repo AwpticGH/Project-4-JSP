@@ -4,7 +4,6 @@
  */
 package Controller;
 
-import Helper.StringHelper;
 import Model.AccountModel;
 import Query.AccountQuery;
 import java.sql.Connection;
@@ -34,7 +33,7 @@ public class AccountController extends BaseController {
     }
     
     public void setAccount(HttpSession session, AccountModel model) {
-        session.setAttribute("status", "login");
+        session.setAttribute("accountId", model.getId());
         session.setAttribute("username", model.getUsername());
         session.setAttribute("email", model.getEmail());
         session.setAttribute("password", model.getPassword());
@@ -43,6 +42,32 @@ public class AccountController extends BaseController {
         session.setAttribute("title", model.getTitle());
         session.setAttribute("dob", model.getDob());
         session.setAttribute("phoneNumber", model.getPhoneNumber());
+        session.setAttribute("status", true);
+    }
+    
+    public ResultSet getAccount(String ID) {
+        Map<Integer, Object> map = new HashMap<>();
+        map.put(1, ID);
+        
+        String sql = this.query.getById;
+        
+        return super.get(sql);
+    }
+    
+    public boolean updateAccount(AccountModel model) {
+        Map<Integer, Object> map = new HashMap<>();
+        map.put(1, model.getEmail());
+        map.put(2, model.getPassword());
+        map.put(3, model.getName());
+        map.put(4, model.getDob());
+        map.put(5, model.getGender());
+        map.put(6, model.getTitle());
+        map.put(7, model.getPhoneNumber());
+        map.put(8, model.getId());
+        
+        String sql = this.query.update;
+        
+        return super.preparedStatement(map, sql);
     }
     
     public boolean register(AccountModel model) throws ParseException {
@@ -59,19 +84,6 @@ public class AccountController extends BaseController {
         
         return super.preparedStatement(map, sql);
     }
-    public boolean update(String id, AccountModel model) throws ParseException {
-        
-        Map<Integer, Object> map = new HashMap<>();
-        map.put(1, model.getName());
-        map.put(2, model.getAge());
-        map.put(3, model.getStock());
-        map.put(4, model.getPrice());
-        map.put(5, model.getExpired());
-        map.put(6, id);
-        
-        String sql = this.query.update;
-        
-        return this.preparedStatement(map, sql);
-    }
-
+    
+    
 }

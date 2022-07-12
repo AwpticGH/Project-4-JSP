@@ -4,8 +4,17 @@
  */
 package Servlet;
 
+import Controller.AccountController;
+import Controller.TicketController;
+import Helper.DateHelper;
+import Model.AccountModel;
+import Model.TicketModel;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +25,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author rafih
  */
-public class LogoutServlet extends LoginServlet {
+public class TicketServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -27,22 +36,26 @@ public class LogoutServlet extends LoginServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            super.setStatus(false);
-            super.setAccountInfo(null);
-            response.sendRedirect("Home");
+            /* TODO output your page here. You may use following sample code. */
+            if (request.getSession().isNew()) {
+                request.setAttribute("status", false);
+            }
+            else {
+                boolean isLoggedIn = LoginServlet.getStatus();
+                if (isLoggedIn) {
+                    ResultSet rs = LoginServlet.getAccountInfo();
+                    request.setAttribute("accountRs", rs);
+                    
+                }
+                request.setAttribute("status", isLoggedIn);
+            }
             
-            
-//            if (request.getRequestURI().equals("/Program/Logout")) {
-//                response.sendRedirect("Register");
-//            }
-//            else {
-//                response.sendRedirect("Home");
-//            }
+            RequestDispatcher dispatch = request.getRequestDispatcher("/views/ticket-detail.jsp");
+            dispatch.forward(request, response);
         }
     }
 
@@ -58,6 +71,12 @@ public class LogoutServlet extends LoginServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            
+        String id = request.getParameter("accountId");
+        TicketController tc = new TicketController();
+        ResultSet rs = tc.getTicket(id);
+        request.setAttribute("ticketRs", rs);
+        
         processRequest(request, response);
     }
 
@@ -72,7 +91,20 @@ public class LogoutServlet extends LoginServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String accountId = request.getParameter("accountId");
+        String flightId = request.getParameter("flightId");
+        String reservationId = request.getParameter("reservationId");
+        
+        TicketController tc = new TicketController();
+        boolean cancelled = tc.cancelTicket(flightId, accountId);
+        
+        if (cancelled) {
+            boolean deleted = tc.deleteReservationInfo(reservationId);
+            if (deleted) {
+                response.sendRedirect("Home");
+            }
+        }
     }
 
     /**

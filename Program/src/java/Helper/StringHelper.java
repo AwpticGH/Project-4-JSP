@@ -22,7 +22,11 @@ public class StringHelper {
     
     public static String getSeatClass(String text) {
         String[] seatClass = text.split(" ");
-        return seatClass[2];
+        if (seatClass.length == 3) {
+            return seatClass[2];
+        }
+        else {
+            return seatClass[2] + " " + seatClass[3];
+        }
     }
-
 }

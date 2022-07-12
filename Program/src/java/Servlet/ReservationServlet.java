@@ -4,10 +4,14 @@
  */
 package Servlet;
 
-import Config.DBConnection;
+import Controller.TicketController;
+import Helper.DateHelper;
+import Model.TicketModel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author rafih
  */
-public class HomeServlet extends HttpServlet {
+public class ReservationServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,6 +37,7 @@ public class HomeServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
             if (request.getSession().isNew()) {
                 request.setAttribute("status", false);
             }
@@ -45,8 +50,8 @@ public class HomeServlet extends HttpServlet {
                 }
                 request.setAttribute("status", isLoggedIn);
             }
-
-            RequestDispatcher dispatch = request.getRequestDispatcher("/views/home.jsp");
+            
+            RequestDispatcher dispatch = request.getRequestDispatcher("/views/reservation-data.jsp");
             dispatch.forward(request, response);
         }
     }
@@ -77,7 +82,52 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String flightId = request.getParameter("flightId");
+        String accountId = request.getParameter("accountId");
+        String passCount = request.getParameter("passengerCount");
+        String seatClass = request.getParameter("seatClass");
+        
+        TicketModel model = new TicketModel();
+        model.instantiateName(Integer.parseInt(passCount));
+        model.instantiateAge(Integer.parseInt(passCount));
+        model.instantiateGender(Integer.parseInt(passCount));
+        model.instantiatePhoneNumber(Integer.parseInt(passCount));
+        try {
+            for (int i = 0; i < Integer.parseInt(passCount); i++) {
+                model.setName(i, request.getParameter("name" + i));
+                model.setAge(i, DateHelper.parseAgeFromDob(request.getParameter("dob" + i)));
+                model.setGender(i, request.getParameter("gender" + i));
+                model.setPhoneNumber(i, request.getParameter("phoneNumber" + i));
+            }
+        }
+        catch(ParseException e) {
+            System.out.println(e.getCause());
+        }
+        
+        TicketController tc = new TicketController();
+        boolean ticketCreated = tc.createReservation(flightId, accountId);
+        
+        if (ticketCreated) {
+            try {
+                ResultSet rs = tc.getReservation(flightId, accountId);
+                if (rs.isBeforeFirst()) {
+                    rs.first();
+                    model.setReservationId(rs.getString(1));
+                    model.setSeatClass(seatClass);
+                    boolean infoCreated = false;
+
+                    for (int i = 0; i < Integer.parseInt(passCount); i++) {
+                        infoCreated = tc.createReservationInfo(i, model);
+                    }
+                    if (infoCreated) {
+                        response.sendRedirect("Home");
+                    }   
+                }
+            }
+            catch(SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**

@@ -20,6 +20,18 @@
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>Servlet.LogoutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TicketDetailServlet</servlet-name>
+        <servlet-class>Servlet.TicketServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AccountServlet</servlet-name>
+        <servlet-class>Servlet.AccountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReservationServlet</servlet-name>
+        <servlet-class>Servlet.ReservationServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -39,6 +51,18 @@
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TicketDetailServlet</servlet-name>
+        <url-pattern>/Ticket</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccountServlet</servlet-name>
+        <url-pattern>/Account</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReservationServlet</servlet-name>
+        <url-pattern>/Reservation</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

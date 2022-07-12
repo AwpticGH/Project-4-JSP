@@ -6,6 +6,8 @@ package Helper;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 
 /**
@@ -24,5 +26,23 @@ public class DateHelper {
     public static String dateFormat(String date) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM");
         return sdf.format(parseDate(date));
+    }
+    
+    public static String dateFormat(String format, String date) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        return sdf.format(parseDate(date));
+    }
+    
+    public static String parseAgeFromDob(String dob) throws ParseException {
+        if (dob != null) {
+            LocalDate currentDate = LocalDate.now();
+            LocalDate dateOfBirth = LocalDate.parse(dob);
+            int age = Period.between(dateOfBirth, currentDate).getYears();
+
+            return String.valueOf(age);
+        }
+        else {
+            return null;
+        }
     }
 }
