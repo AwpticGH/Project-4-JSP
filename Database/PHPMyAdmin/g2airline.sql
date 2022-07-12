@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2022 at 03:41 PM
+-- Generation Time: Jul 12, 2022 at 09:01 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -13291,21 +13291,6 @@ INSERT INTO `preeconomyseats` (`ID`, `Row`, `Number`, `Airplane_ID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `registeredpassenger`
---
-
-CREATE TABLE `registeredpassenger` (
-  `ID` int(11) NOT NULL COMMENT 'identity',
-  `Name` varchar(50) NOT NULL,
-  `DateOfBirth` date NOT NULL,
-  `Title` varchar(5) NOT NULL,
-  `PhoneNumber` bigint(20) DEFAULT NULL,
-  `UserID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='User''''s List of Passenger';
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `reservation`
 --
 
@@ -13313,7 +13298,7 @@ CREATE TABLE `reservation` (
   `ID` int(11) NOT NULL,
   `FlightID` int(11) NOT NULL,
   `UserID` int(11) NOT NULL,
-  `Reserved` tinyint(1) NOT NULL DEFAULT 1,
+  `Paid` tinyint(1) NOT NULL DEFAULT 1,
   `Active` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -13321,138 +13306,33 @@ CREATE TABLE `reservation` (
 -- Dumping data for table `reservation`
 --
 
-INSERT INTO `reservation` (`ID`, `FlightID`, `UserID`, `Reserved`, `Active`) VALUES
-(1, 1, 1, 1, 1);
+INSERT INTO `reservation` (`ID`, `FlightID`, `UserID`, `Paid`, `Active`) VALUES
+(1, 1, 1, 1, 0),
+(23, 2, 1, 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reservedbusinessseats`
+-- Table structure for table `reservationinfo`
 --
 
-CREATE TABLE `reservedbusinessseats` (
+CREATE TABLE `reservationinfo` (
   `ID` int(11) NOT NULL,
-  `SeatID` int(11) NOT NULL,
   `ReservationID` int(11) NOT NULL,
-  `FlightID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reservedbusinessseatsinfo`
---
-
-CREATE TABLE `reservedbusinessseatsinfo` (
-  `ID` int(11) NOT NULL,
-  `Name` varchar(50) NOT NULL,
-  `Age` int(11) NOT NULL,
+  `SeatClass` varchar(16) NOT NULL,
+  `Name` varchar(128) NOT NULL,
+  `Age` tinyint(4) NOT NULL,
   `Gender` varchar(6) NOT NULL,
-  `PhoneNumber` bigint(20) NOT NULL,
-  `ReservedBusinessSeatsID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reservedeconomyseats`
---
-
-CREATE TABLE `reservedeconomyseats` (
-  `ID` int(11) NOT NULL,
-  `SeatID` int(11) NOT NULL,
-  `ReservationID` int(11) NOT NULL,
-  `FlightID` int(11) NOT NULL
+  `PhoneNumber` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `reservedeconomyseats`
+-- Dumping data for table `reservationinfo`
 --
 
-INSERT INTO `reservedeconomyseats` (`ID`, `SeatID`, `ReservationID`, `FlightID`) VALUES
-(1, 1, 1, 1),
-(2, 2, 1, 1),
-(3, 3, 1, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reservedeconomyseatsinfo`
---
-
-CREATE TABLE `reservedeconomyseatsinfo` (
-  `ID` int(11) NOT NULL,
-  `Name` varchar(50) NOT NULL,
-  `Age` int(11) NOT NULL,
-  `Gender` varchar(6) NOT NULL,
-  `PhoneNumber` bigint(20) NOT NULL,
-  `ReservedEconomySeatsID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `reservedeconomyseatsinfo`
---
-
-INSERT INTO `reservedeconomyseatsinfo` (`ID`, `Name`, `Age`, `Gender`, `PhoneNumber`, `ReservedEconomySeatsID`) VALUES
-(4, 'Rafi Fajar Sulaiman', 21, 'Male', 82298350859, 1),
-(5, 'Dea Fitria', 19, 'Female', 82272492012, 2),
-(6, 'Alyssa Nadhira E', 3, 'Female', 0, 3);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reservedfirstclassseats`
---
-
-CREATE TABLE `reservedfirstclassseats` (
-  `ID` int(11) NOT NULL,
-  `SeatID` int(11) NOT NULL,
-  `ReservationID` int(11) NOT NULL,
-  `FlightID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reservedfirstclassseatsinfo`
---
-
-CREATE TABLE `reservedfirstclassseatsinfo` (
-  `ID` int(11) NOT NULL,
-  `Name` varchar(50) NOT NULL,
-  `Age` int(11) NOT NULL,
-  `Gender` varchar(6) NOT NULL,
-  `PhoneNumber` bigint(20) NOT NULL,
-  `ReservedFirstClassSeatsID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reservedpreeconomyseats`
---
-
-CREATE TABLE `reservedpreeconomyseats` (
-  `ID` int(11) NOT NULL,
-  `SeatID` int(11) NOT NULL,
-  `Reservation_ID` int(11) NOT NULL,
-  `FlightID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reservedpreeconomyseatsinfo`
---
-
-CREATE TABLE `reservedpreeconomyseatsinfo` (
-  `ID` int(11) NOT NULL,
-  `Name` varchar(50) NOT NULL,
-  `Age` int(11) NOT NULL,
-  `Gender` varchar(6) NOT NULL,
-  `PhoneNumber` bigint(20) NOT NULL,
-  `ReservedPreEconomySeatsID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `reservationinfo` (`ID`, `ReservationID`, `SeatClass`, `Name`, `Age`, `Gender`, `PhoneNumber`) VALUES
+(5, 23, 'First Class', 'Rafi Fajar Sulaiman', 21, 'Male', 82298350859),
+(6, 23, 'First Class', 'Dea', 19, 'Female', 82272492013);
 
 -- --------------------------------------------------------
 
@@ -13477,9 +13357,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `Username`, `Email`, `Password`, `Name`, `DateOfBirth`, `Gender`, `Title`, `PhoneNumber`) VALUES
-(1, 'Awptic', 'rafifajar@gmail.com', 'refresh01', 'Rafi Fajar Sulaiman', '2001-01-01', 'Male', 'Mr', 82298350859),
+(1, 'Awptic', 'rafifajar@gmail.com', '123', 'Rafi Fajar Sulaiman', '2001-01-01', 'Male', 'Mr', 82298350859),
 (2, 'UcokGanteng', 'ucokganteng@yahoo.co.id', 'ucokganteng123', 'Ucok Marocok', '1996-06-05', 'Male', 'Mr', 82279462546),
-(3, 'test1', 'tester@yahoo.com', 'refresh01', 'Tester', '2002-02-27', 'Female', 'Miss', 81246469784),
 (4, 'test2', 'tester@gmail.com', '123', 'Tester1', '2000-02-06', 'Male', 'Mr', 8125647894);
 
 --
@@ -13551,13 +13430,6 @@ ALTER TABLE `preeconomyseats`
   ADD KEY `PreEconomySeats_Airplane` (`Airplane_ID`);
 
 --
--- Indexes for table `registeredpassenger`
---
-ALTER TABLE `registeredpassenger`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `RegisteredPassenger_User` (`UserID`);
-
---
 -- Indexes for table `reservation`
 --
 ALTER TABLE `reservation`
@@ -13566,68 +13438,11 @@ ALTER TABLE `reservation`
   ADD KEY `Reservation_reserving_employee` (`UserID`);
 
 --
--- Indexes for table `reservedbusinessseats`
+-- Indexes for table `reservationinfo`
 --
-ALTER TABLE `reservedbusinessseats`
+ALTER TABLE `reservationinfo`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `ReservedBusinessSeats_BusinessSeats` (`SeatID`),
-  ADD KEY `ReservedBusinessSeats_Flight` (`FlightID`),
-  ADD KEY `ReservedBusinessSeats_Reservation` (`ReservationID`);
-
---
--- Indexes for table `reservedbusinessseatsinfo`
---
-ALTER TABLE `reservedbusinessseatsinfo`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `ReservedBusinessSeatsInfo_ReservedBusinessSeats` (`ReservedBusinessSeatsID`);
-
---
--- Indexes for table `reservedeconomyseats`
---
-ALTER TABLE `reservedeconomyseats`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `Seat_reserved_Reservation_projection` (`FlightID`),
-  ADD KEY `Seat_reserved_Reservation_reservation` (`ReservationID`),
-  ADD KEY `Seat_reserved_Seat` (`SeatID`);
-
---
--- Indexes for table `reservedeconomyseatsinfo`
---
-ALTER TABLE `reservedeconomyseatsinfo`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `ReservedEconomySeatsInfo_ReservedEconomySeats` (`ReservedEconomySeatsID`);
-
---
--- Indexes for table `reservedfirstclassseats`
---
-ALTER TABLE `reservedfirstclassseats`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `ReservedFirstClassSeats_FirstClassSeats` (`SeatID`),
-  ADD KEY `ReservedFirstClassSeats_Flight` (`FlightID`),
-  ADD KEY `ReservedFirstClassSeats_Reservation` (`ReservationID`);
-
---
--- Indexes for table `reservedfirstclassseatsinfo`
---
-ALTER TABLE `reservedfirstclassseatsinfo`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `ReservedFirstClassSeatsInfo_ReservedFirstClassSeats` (`ReservedFirstClassSeatsID`);
-
---
--- Indexes for table `reservedpreeconomyseats`
---
-ALTER TABLE `reservedpreeconomyseats`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `ReservedPreEconomySeats_Flight` (`FlightID`),
-  ADD KEY `ReservedPreEconomySeats_PreEconomySeats` (`SeatID`),
-  ADD KEY `ReservedPreEconomySeats_Reservation` (`Reservation_ID`);
-
---
--- Indexes for table `reservedpreeconomyseatsinfo`
---
-ALTER TABLE `reservedpreeconomyseatsinfo`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `ReservedPreEconomySeatsInfo_ReservedPreEconomySeats` (`ReservedPreEconomySeatsID`);
+  ADD KEY `ReservationID` (`ReservationID`);
 
 --
 -- Indexes for table `users`
@@ -13682,64 +13497,16 @@ ALTER TABLE `preeconomyseats`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3713;
 
 --
--- AUTO_INCREMENT for table `registeredpassenger`
---
-ALTER TABLE `registeredpassenger`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identity', AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT for table `reservedbusinessseats`
+-- AUTO_INCREMENT for table `reservationinfo`
 --
-ALTER TABLE `reservedbusinessseats`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `reservedbusinessseatsinfo`
---
-ALTER TABLE `reservedbusinessseatsinfo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `reservedeconomyseats`
---
-ALTER TABLE `reservedeconomyseats`
+ALTER TABLE `reservationinfo`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `reservedeconomyseatsinfo`
---
-ALTER TABLE `reservedeconomyseatsinfo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `reservedfirstclassseats`
---
-ALTER TABLE `reservedfirstclassseats`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `reservedfirstclassseatsinfo`
---
-ALTER TABLE `reservedfirstclassseatsinfo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `reservedpreeconomyseats`
---
-ALTER TABLE `reservedpreeconomyseats`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `reservedpreeconomyseatsinfo`
---
-ALTER TABLE `reservedpreeconomyseatsinfo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -13796,12 +13563,6 @@ ALTER TABLE `preeconomyseats`
   ADD CONSTRAINT `PreEconomySeats_Airplane` FOREIGN KEY (`Airplane_ID`) REFERENCES `airplane` (`ID`);
 
 --
--- Constraints for table `registeredpassenger`
---
-ALTER TABLE `registeredpassenger`
-  ADD CONSTRAINT `RegisteredPassenger_User` FOREIGN KEY (`UserID`) REFERENCES `users` (`ID`);
-
---
 -- Constraints for table `reservation`
 --
 ALTER TABLE `reservation`
@@ -13809,60 +13570,10 @@ ALTER TABLE `reservation`
   ADD CONSTRAINT `Reservation_reserving_employee` FOREIGN KEY (`UserID`) REFERENCES `users` (`ID`);
 
 --
--- Constraints for table `reservedbusinessseats`
+-- Constraints for table `reservationinfo`
 --
-ALTER TABLE `reservedbusinessseats`
-  ADD CONSTRAINT `ReservedBusinessSeats_BusinessSeats` FOREIGN KEY (`SeatID`) REFERENCES `businessseats` (`ID`),
-  ADD CONSTRAINT `ReservedBusinessSeats_Flight` FOREIGN KEY (`FlightID`) REFERENCES `flight` (`ID`),
-  ADD CONSTRAINT `ReservedBusinessSeats_Reservation` FOREIGN KEY (`ReservationID`) REFERENCES `reservation` (`ID`);
-
---
--- Constraints for table `reservedbusinessseatsinfo`
---
-ALTER TABLE `reservedbusinessseatsinfo`
-  ADD CONSTRAINT `ReservedBusinessSeatsInfo_ReservedBusinessSeats` FOREIGN KEY (`ReservedBusinessSeatsID`) REFERENCES `reservedbusinessseats` (`ID`);
-
---
--- Constraints for table `reservedeconomyseats`
---
-ALTER TABLE `reservedeconomyseats`
-  ADD CONSTRAINT `Seat_reserved_Reservation_projection` FOREIGN KEY (`FlightID`) REFERENCES `flight` (`ID`),
-  ADD CONSTRAINT `Seat_reserved_Reservation_reservation` FOREIGN KEY (`ReservationID`) REFERENCES `reservation` (`ID`),
-  ADD CONSTRAINT `Seat_reserved_Seat` FOREIGN KEY (`SeatID`) REFERENCES `economyseats` (`ID`);
-
---
--- Constraints for table `reservedeconomyseatsinfo`
---
-ALTER TABLE `reservedeconomyseatsinfo`
-  ADD CONSTRAINT `ReservedEconomySeatsInfo_ReservedEconomySeats` FOREIGN KEY (`ReservedEconomySeatsID`) REFERENCES `reservedeconomyseats` (`ID`);
-
---
--- Constraints for table `reservedfirstclassseats`
---
-ALTER TABLE `reservedfirstclassseats`
-  ADD CONSTRAINT `ReservedFirstClassSeats_FirstClassSeats` FOREIGN KEY (`SeatID`) REFERENCES `firstclassseats` (`ID`),
-  ADD CONSTRAINT `ReservedFirstClassSeats_Flight` FOREIGN KEY (`FlightID`) REFERENCES `flight` (`ID`),
-  ADD CONSTRAINT `ReservedFirstClassSeats_Reservation` FOREIGN KEY (`ReservationID`) REFERENCES `reservation` (`ID`);
-
---
--- Constraints for table `reservedfirstclassseatsinfo`
---
-ALTER TABLE `reservedfirstclassseatsinfo`
-  ADD CONSTRAINT `ReservedFirstClassSeatsInfo_ReservedFirstClassSeats` FOREIGN KEY (`ReservedFirstClassSeatsID`) REFERENCES `reservedfirstclassseats` (`ID`);
-
---
--- Constraints for table `reservedpreeconomyseats`
---
-ALTER TABLE `reservedpreeconomyseats`
-  ADD CONSTRAINT `ReservedPreEconomySeats_Flight` FOREIGN KEY (`FlightID`) REFERENCES `flight` (`ID`),
-  ADD CONSTRAINT `ReservedPreEconomySeats_PreEconomySeats` FOREIGN KEY (`SeatID`) REFERENCES `preeconomyseats` (`ID`),
-  ADD CONSTRAINT `ReservedPreEconomySeats_Reservation` FOREIGN KEY (`Reservation_ID`) REFERENCES `reservation` (`ID`);
-
---
--- Constraints for table `reservedpreeconomyseatsinfo`
---
-ALTER TABLE `reservedpreeconomyseatsinfo`
-  ADD CONSTRAINT `ReservedPreEconomySeatsInfo_ReservedPreEconomySeats` FOREIGN KEY (`ReservedPreEconomySeatsID`) REFERENCES `reservedpreeconomyseats` (`ID`);
+ALTER TABLE `reservationinfo`
+  ADD CONSTRAINT `reservationinfo_ibfk_1` FOREIGN KEY (`ReservationID`) REFERENCES `reservation` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
