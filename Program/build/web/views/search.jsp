@@ -73,7 +73,7 @@
             for (int i = 0; i < resultCounter; i++) { %>
             <!-- panel - result -->
             <form action="Reservation">
-                <input name="accountId" type="hidden" value="<%= accountRs.getString("ID")%>">
+                <input name="accountId" type="hidden" value="<%= accountRs.getString("id")%>">
                 <input name="flightId" type="hidden" value="<%= request.getAttribute("flightId" + i)%>">
                 <input name="passengerCount" type="hidden" value="<%= passCount%>">
                 <input name="seatClass" type="hidden" value="<%= seatClass%>">
@@ -88,7 +88,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="col-6 content text-center">
-                                    <a href="#result" class="info-extender"">Flight Info</a>
+                                    <a href="#result" class="info-extender">Flight Info</a>
                                 </div>
                                 <div class="col-6 content text-center">
                                     <a href="#result" class="price-extender">Fare Info</a>

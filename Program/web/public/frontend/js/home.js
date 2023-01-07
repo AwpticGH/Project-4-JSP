@@ -9,19 +9,31 @@ const allElement = document.getElementsByTagName("*");
 
 /** @type HTMLElement|null */
 
-const selected = document.querySelector(".selected");
-const optionsContainer = document.querySelector(".options-container");
+const selectedFrom = document.querySelector(".selected-from");
+const optionsContainerFrom = document.querySelector(".options-container-from");
+const optionsContainerTo = document.querySelector(".options-container-to");
 
-const optionsList = document.querySelectorAll(".option");
+const selectedTo = document.querySelector(".selected-to");
+const optionsListFrom = document.querySelectorAll(".option-from");
+const optionsListTo = document.querySelectorAll(".option-to");
 
-selected.addEventListener("click", () => {
-    optionsContainer.classList.toggle("active");
+selectedFrom.addEventListener("click", () => {
+    optionsContainerFrom.classList.toggle("active");
+});
+optionsListFrom.forEach(o => {
+    o.addEventListener("click", () => {
+        selectedFrom.innerHTML = o.querySelector("label").innerHTML;
+        optionsContainerFrom.classList.remove("active");
+    });
 });
 
-optionsList.forEach(o => {
+selectedTo.addEventListener("click", () => {
+    optionsContainerTo.classList.toggle("active");
+});
+optionsListTo.forEach(o => {
     o.addEventListener("click", () => {
-        selected.innerHTML = o.querySelector("label").innerHTML;
-        optionsContainer.classList.remove("active");
+        selectedTo.innerHTML = o.querySelector("label").innerHTML;
+        optionsContainerTo.classList.remove("active");
     });
 });
 

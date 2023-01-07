@@ -50,7 +50,7 @@ public class SearchServlet extends HttpServlet {
                 request.setAttribute("status", isLoggedIn);
             }
             
-            RequestDispatcher dispatch = request.getRequestDispatcher("/views/search.jsp");
+            RequestDispatcher dispatch = request.getRequestDispatcher("./views/search.jsp");
             dispatch.forward(request, response);
         }
     }

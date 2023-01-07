@@ -9,9 +9,9 @@ package Query;
  * @author rafih
  */
 public class AccountQuery {
-    public String login = "SELECT * FROM users WHERE Email = ? AND Password = ?";
-    public String register = "INSERT INTO users (Email, Password, Name, Gender, Title, DateOfBirth, PhoneNumber) VALUES"
+    public String login = "SELECT * FROM users WHERE email = ? AND password = ?";
+    public String register = "INSERT INTO users (email, password, name, gender, title, date_of_birth, phone_number) VALUES"
             + "(?, ?, ?, ?, ?, ?, ?)";
-    public String getById = "SELECT * FROM users WHERE ID = ?";
-    public String update = "UPDATE users SET Email = ?, Password = ?, Name = ?, DateOfBirth = ?, Gender = ?, Title = ?, PhoneNumber = ? WHERE ID = ?";
+    public String getById = "SELECT * FROM users WHERE id = ?";
+    public String update = "UPDATE users SET email = ?, password = ?, name = ?, date_of_birth = ?, gender = ?, title = ?, phone_number = ? WHERE id = ?";
 }

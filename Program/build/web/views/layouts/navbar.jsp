@@ -55,14 +55,14 @@
                     ResultSet accountRs = (ResultSet)request.getAttribute("accountRs");
                     accountRs.first(); %>
                         <li id="trigger-user">
-                            <a href="#wrapper" id="nav-user" name="username"><%= accountRs.getString("Username")%></a>
-                            <input type="hidden" name="accountId" value="<%= accountRs.getString("ID")%>">
+                            <a href="#wrapper" id="nav-user" name="username"><%= accountRs.getString("username")%></a>
+                            <input type="hidden" name="accountId" value="<%= accountRs.getString("id")%>">
                             <div id="user-panel">
-                                <form action="Account" method="GET" onsubmit="<% request.setAttribute("accountId", accountRs.getString("ID"));%>">
+                                <form action="Account" method="GET" onsubmit="<% request.setAttribute("accountId", accountRs.getString("id"));%>">
                                     <button type="Submit">Account</button>
                                 </form>
                                 <form action="Ticket" method="GET">
-                                    <input type="hidden" name="accountId" value="<%= accountRs.getString("ID")%>">
+                                    <input type="hidden" name="accountId" value="<%= accountRs.getString("id")%>">
                                     <button type="Submit">Ticket</button>
                                 </form>
                                 <form action="Logout">

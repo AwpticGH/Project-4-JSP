@@ -54,7 +54,7 @@ public class TicketServlet extends HttpServlet {
                 request.setAttribute("status", isLoggedIn);
             }
             
-            RequestDispatcher dispatch = request.getRequestDispatcher("/views/ticket-detail.jsp");
+            RequestDispatcher dispatch = request.getRequestDispatcher("/views/ticket.jsp");
             dispatch.forward(request, response);
         }
     }

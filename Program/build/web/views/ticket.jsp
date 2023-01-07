@@ -28,7 +28,7 @@
             ResultSet ticketRs = (ResultSet)request.getAttribute("ticketRs");
             
             accountRs.first();
-            String accountId = accountRs.getString("ID");
+            String accountId = accountRs.getString("id");
             
             if (ticketRs.isBeforeFirst()) {
                 ticketRs.last();
@@ -162,12 +162,13 @@
                                 %>
                                 <tr>
                                     <td><%= passSelector%>.</td>
-                                    <% if (passGender[i].equals("Male")) { %>
-                                    <td>Mr. <%= passName[i]%></td>
-                                    <% } %>
-                                    <% if (passGender[i].equals("Female")) { %>
-                                    <td>Mrs. <%= passName[i]%></td>
-                                    <% } %>
+                                    <td><%= (passGender[i].equals("Male") 
+                                            ? "Mr" 
+                                            : "Mrs") %>
+<!--//                                            (Integer.parseInt(passAge[i]) > 18) 
+//                                            ? "Mrs" 
+//                                            : "Miss" %>-->
+                                            . <%= passName[i]%></td>
                                     <td><%= passAge[i]%></td>
                                     <td><%= passGender[i]%></td>
                                     <td>+62 <%= passPhone[i]%></td>

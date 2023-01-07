@@ -16,7 +16,7 @@
         </jsp:include>
     </head>
     <body>
-        <jsp:include page="/views/layouts/navbar.jsp"></jsp:include>
+        <%--<jsp:include page="/views/layouts/navbar.jsp"></jsp:include>--%>
         
         <!-- content -->
         
