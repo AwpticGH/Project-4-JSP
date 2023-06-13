@@ -392,7 +392,7 @@ nav ul li a {
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
 footer {
-    /*position: fixed;*/
+/*    position: relative;*/
     bottom: 0;
 }
 
@@ -406,13 +406,14 @@ footer {
 }
 
 .footer-distributed {
+/*    position: fixed;    */
     background: linear-gradient(135deg, #9370DB, #87CEFA);
     box-sizing: border-box;
     width: 100%;
     text-align: left;
     font: bold 16px sans-serif;
     padding: 50px 50px 60px 50px;
-    /* margin-top: 80px; */
+    margin-top: 100px; 
 }
 
 .footer-distributed .footer-left,

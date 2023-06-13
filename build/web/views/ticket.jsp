@@ -190,12 +190,36 @@
         <%  } %>
         <!-- if unlogged -->
         <%  if (!ticketRs.isAfterLast()) { %>
-            <div class="content">
-                <h1 class="text-bold">CIEEEE BELOM ORDER YA, KETINGGALAN JAMAN BANGET SIH KAMU MA</h1>
-            </div>
+        <jsp:include page="/views/layouts/results-ticket-not.jsp"></jsp:include>
         <%  } %>
         <!-- end of content -->
-        
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
         
         
         <jsp:include page="/views/layouts/footer.jsp"></jsp:include>

@@ -38,18 +38,18 @@ public class ReservationServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            if (request.getSession().isNew()) {
-                request.setAttribute("status", false);
-            }
-            else {
-                boolean isLoggedIn = LoginServlet.getStatus();
-                if (isLoggedIn) {
-                    ResultSet rs = LoginServlet.getAccountInfo();
-                    request.setAttribute("accountRs", rs);
-                    
-                }
-                request.setAttribute("status", isLoggedIn);
-            }
+//            if (request.getSession().isNew()) {
+//                request.setAttribute("status", false);
+//            }
+//            else {
+//                boolean isLoggedIn = LoginServlet.getStatus();
+//                if (isLoggedIn) {
+//                    ResultSet rs = LoginServlet.getAccountInfo();
+//                    request.setAttribute("accountRs", rs);
+//                    
+//                }
+//                request.setAttribute("status", isLoggedIn);
+//            }
             
             RequestDispatcher dispatch = request.getRequestDispatcher("/views/reservation-data.jsp");
             dispatch.forward(request, response);

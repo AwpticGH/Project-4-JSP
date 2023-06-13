@@ -56,12 +56,8 @@
             </div>
         </div>
 
-        <% if (!resultFound) { %>
-            KERJA WOY KERJAAAA!!! JANGAN MAGERAN KATANYA MAU BISA CARI DUIT
-        <% } %>
                     
-                    
-        <% if(resultFound) { 
+        <% if(!resultFound) { 
             Integer resultCounter = (Integer)request.getAttribute("resultCounter");
             for (int i = 0; i < resultCounter; i++) { %>
             <!-- panel - result -->

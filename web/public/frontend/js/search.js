@@ -75,6 +75,3 @@ function extendResult1() {
         }
     }
 }
-
-
-hidePanel();

@@ -1,0 +1,10 @@
+# INSTALL MARIADB WITH G2AIRLINE DATABASE INTACT
+###################
+FROM mariadb:10.4
+
+#DB ENVIRONMENT
+ENV MARIADB_ALLOW_EMPTY_ROOT_PASSWORD true
+ENV MARIADB_DATABASE g2airline
+
+#COPY MYSQL SCRIPT
+COPY ./g2airline.sql /docker-entrypoint-initdb.d/

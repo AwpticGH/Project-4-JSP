@@ -63,10 +63,7 @@
                 <button class="btn-panel-searched shadowed" onclick="history.back()">Change Search</button>
             </div>
         </div>
-                    
-        <% if (!resultFound) { %>
-            <h1 class="text-bold">KERJA WOY KERJAAAA!!! JANGAN MAGERAN KATANYA MAU BISA CARI DUIT</h1>
-        <% } %>
+                        
         
         <% if(resultFound) { 
             Integer resultCounter = (Integer)request.getAttribute("resultCounter");
@@ -223,7 +220,28 @@
             <% } %>
         <% } %>
         
-
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+            
         <jsp:include page="/views/layouts/footer.jsp"></jsp:include>
         <jsp:include page="/views/layouts/scripts.jsp">
             <jsp:param name="js-file" value="search.js"></jsp:param>
